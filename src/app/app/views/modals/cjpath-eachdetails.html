@@ -1,0 +1,35 @@
+
+<div class="modal-wrapper" style="padding: 15px;">
+  <div class="detailSampleWrapper">
+    <div class="detailSampleInner clearfix">
+      <div class="clearfix">
+        <h3 class=" pull-left">
+          DRILLDOWN
+<!--
+          <i class="glyphicon glyphicon-user"></i>
+          {{params.wordsdict.title}}
+-->
+        </h3>
+        <p class="pull-right forceclose" style="cursor:pointer;" ng-click="close()">
+          <i class="fa fa-times-circle-o fa-lg" style="font-size: 30px;"></i>
+        </p>
+      </div>
+      <hr style="margin-top:2px;margin-bottom:2px;">
+      <div style="margin: 10px 0; border-radius:3px;">
+        <draw-cj-path 
+          pathdata="params.pathdata" symbols="params.symbols" appheight="90" isviewmode="params.isviewmode"
+          optpath="params.optpath" drawpattern="'eachdetail'" pagerange="1" words="params.words"></draw-cj-path>
+      </div>
+      <div class="tableWrapper widget" style="height:{{heights.bottom+50}}px; padding-top:10px;">
+        <path-summary
+          class="path-summary-directive"
+          isapploaded="isapploaded"
+          masterflg="masterflg"
+          optcont="params.optcont"
+          optglbl="params" isactive="true"  ctype="'eachpathpopup'" cheight="heights.bottom" cwidth="params.summary_w"></path-summary>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,38 @@
+<div class="modal-wrapper" style="padding: 15px;">
+  <h3 style="text-align:center;" ng-if="operationtype === 'add'">Add to {{menuObj.label}}</h3>
+  <h3 style="text-align:center;" ng-if="operationtype === 'edit'">Edit {{menuObj.label}}</h3>
+  <div ng-if="isLoading" style="text-align:center;">
+    <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+  </div>
+  <div ng-if="!isLoading">
+    <div>
+      <table class="table table-striped" style="margin-bottom:10px;">
+        <tr ng-repeat="row in filterObj" ng-if="row.isEdit" ng-show="row.type !== 'condvalue'">
+          <td class="td-fixed">{{row.label}}</td>
+          <td>
+            <div ng-show="row.editType === 'text'" ng-class="{'has-error' : row.iserror}">
+              <input type="text" class="form-control" ng-model="row.value" ng-change="checkIfNameIsEmpty()" />
+            </div>
+            <div ng-show="row.editType === 'textarea'">
+              <div ng-show="row.type === 'condselection'">
+                <div ng-include src="'views/modals/include-optionparts-selection-table.html'"></div>
+              </div>
+              <div ng-show="row.type === 'memo'">
+                <textarea 
+                  class="form-control"
+                  rows="5"
+                  ng-change="checkIfNameIsEmpty()"
+                  ng-model="row.value"></textarea >
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+      <div class="footer clearfix" style="width: 130px; margin:0 auto;">
+        <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button>
+        <button type="button" class="btn btn-default pull-left" ng-class="{'btn-isoktosave':isOkToSave}" style="margin-left:10px;" ng-disabled="!isOkToSave" ng-click="save()">save</button>
+      </div>
+    </div>
+  </div>
+</div>

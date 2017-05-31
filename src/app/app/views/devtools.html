@@ -1,0 +1,233 @@
+<script>/*
+<div class="stickyPanelWrapper clearfix" ng-show="main.islogout" ng-style="stickypanelcss">
+  <div class="stickyPanelBackground animate-slidein-bg clearfix"></div>
+  <div class="stickyPanelInner animate-slidein clearfix" ng-bind-html="words.sessionout">
+  </div>
+</div>
+
+<div class="main-content" id="main-content" ng-show="!main.islogout">
+  <div class="main-content-inner {{bodyClass}}" resize ng-style="setMinWidth(87);">
+
+    <header class="header" id="header">
+      <div class="logo pull-left"></div>
+      <div class="header-controls clearfix">
+        <i class="logout-btn icon-nav-logout" ng-click="vm.logout()" title="Sign Out" style="cursor:pointer;font-size:28px;"></i>
+      </div>
+      <!-- project switch panel -->
+      <div class="pull-right" ng-show="projects.length > 0" style="margin-right:10px;"><div ng-include src="'views/partials/projects-switch.html'"></div></div>
+    </header>
+    <div class="configWrapper" ng-show="!vm.isAuthUser">
+      <p style="text-align:center;">You are not authorized to see this contents.</p>
+    </div>
+    <div class="configWrapper active" ng-show="vm.isAuthUser">
+      <div class="configLeft">
+        <div ng-repeat="menu in vm.menus">
+          <p class="menu" ng-class="menu.class" ng-click="vm.changeMenu(menu, $index)">{{menu.label}}</p>
+        </div>
+      </div>
+      <div class="configRight" ng-style="{'min-height' : menu_h+'px'}">
+        <h2>{{vm.selectedItem.label}}</h2>
+        <div ng-if="vm.isLoading" class="isloading">
+          <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+        </div>
+        <div ng-if="!vm.isLoading">
+          <div ng-show="vm.selectedItem.description !== ''">
+            <p ng-bind-html="vm.selectedItem.description"></p>
+          </div>
+	  <!-- log start -->
+          <div ng-show="vm.selectedItem.contenttype === 'log'">
+	    <!-- dropdown start -->
+            <div class="clearfix">
+              <div ng-if="vm.list.length > 1" 
+                  class="dropdown-container inline ng-scope pull-left" 
+                  style="margin-right: 3px; margin-bottom:5px;"
+                  uib-dropdown btn-group>
+                <button
+                 type="button"
+                 class="btn btn-default btn-sm dropdown-toggle"
+                 uib-dropdown-toggle
+                 data-toggle="uib-dropdown"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                  {{vm.selectDeopdown}}
+                  <span class="icon-chevron-down" style="font-size:8px;"></span>
+                 </button>
+                 <ul class="dropdown-menu dropdown-default ng-scope" role="menu" uib-dropdown-menu="">
+                  <li ng-repeat="item in vm.list track by $index">
+                    <a href ng-click="vm.changeDropDown(item)">{{item}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- dropdown end -->
+            <div class="clearfix" style="margin-bottom:7px;">
+              <button
+               type="button"
+               class="btn btn-default btn-sm dropdown-toggle pull-left"
+               ng-click="vm.log_dl()"
+               title="download"
+               style="margin-right:3px;"
+               ng-disabled="vm.isLoading">
+                <span class="glyphicon glyphicon-save"></span>
+              </button>
+              <button
+               type="button"
+               class="btn btn-default btn-sm dropdown-toggle pull-left"
+               title="delete"
+               ng-click="vm.log_trash()"
+               ng-disabled="vm.isLoading">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+              <span class="pull-right" ng-bind-html="vm.tstamp"></span>
+            </div>
+            <pre ng-bind-html="vm.log"></pre>
+          </div>
+	  <!-- log end -->
+	  <!-- cachedvars start -->
+          <div ng-show="vm.selectedItem.contenttype === 'cachedvars'">
+            <table class="table table-striped">
+              <tr>
+                <th>variable name</th>
+                <th>value</th>
+                <th>timestamp</th>
+              </tr>
+              <tr ng-repeat="row in vm.cvlist">
+                <td>{{row.fname}}</td>
+                <td style="word-wrap: break-word;">{{row.value}}</td>
+                <td>{{vm.convertTimeSecToString(row.timestamp)}}</td>
+              </tr>
+            </table>
+          </div>
+	  <!-- cachedvars end -->
+	  <!-- db start -->
+          <div ng-show="vm.selectedItem.contenttype === 'db'">
+            <!-- dropdown start -->
+            <div class="clearfix">
+              <div ng-if="vm.tablelist.length > 1" 
+                  class="dropdown-container inline ng-scope pull-left" 
+                  style="margin-right: 3px; margin-bottom:10px; width:100%; padding-bottom:15px; border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 0 rgba(255,255,255,1);"
+                  uib-dropdown btn-group>
+                <!--<i class="glyphicon glyphicon-th-large pull-left" style="line-height:1.6;margin-right:3px;"></i>-->
+                <button
+                 type="button"
+                 class="btn btn-default dropdown-toggle pull-left"
+                 style="width:100%;"
+                 title="select table"
+                 uib-dropdown-toggle
+                 data-toggle="uib-dropdown"
+                 aria-haspopup="true"
+                 aria-expanded="false">
+                  Table Name : {{vm.selectDeopdown}}
+                  <span class="icon-chevron-down" style="font-size:8px;"></span>
+                 </button>
+                 <ul class="dropdown-menu dropdown-default ng-scope" role="menu" uib-dropdown-menu="">
+                  <li ng-repeat="item in vm.tablelist track by $index">
+                    <a href ng-click="vm.changeDropDown(item)">{{item}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="clearfix">
+              <button
+               type="button"
+               class="btn btn-default btn-sm dropdown-toggle pull-left"
+               ng-click="vm.open_dbmodal('add', row)">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+              <div class="input-group pull-right" style="width:calc(100% - 40px);max-width:300px;">
+                <span class="input-group-addon" id="search-box-1"><i class="glyphicon glyphicon-search"></i></span>
+                <input type="text" class="form-control" ng-model="vm.searchtext" 
+                       placeholder="search for..." aria-describedby="search-box-1" />
+              </div>
+            </div>
+            <!-- dropdown end -->
+            <div class="tableWrapper" style="overflow:auto;width:100%;height:100%;max-height:500px; margin-top:10px;">
+              <table class="table table-fixed table-striped">
+                <thead>
+                  <tr>
+                    <th ng-repeat="th in vm.thead" style="word-wrap: break-word;">{{th}}</th>
+                    <th colspan="2" style="word-wrap: break-word; width: 100px;">edit/delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="row in vm.tbody | filter:vm.searchtext">
+                    <td ng-repeat="th in vm.thead" style="word-break: break-all;">
+                      <p ng-if="['color','dval'].indexOf(th)===-1" title="{{row[th]}}" style="margin:0 auto;text-align:center;">
+                        {{row[th] | limitTo : 20}}{{row[th].length > 20 ? '&hellip;' : ''}}
+                      </p>
+                      <p ng-if="th === 'color'" ng-style="{'background-color' : row[th]}" style="width:100px;height:20px;margin:0 auto;"></p>
+                      <svg ng-if="th === 'dval'" height="20px" viewBox="0 0 20 20">
+                        <path ng-attr-d="{{row[th]}}"></path>
+                      <svg>
+                    </td>
+                    <td>
+                      <button
+                       type="button"
+                       class="btn btn-default btn-sm dropdown-toggle"
+                       ng-click="vm.open_dbmodal('edit', row)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                       type="button"
+                       class="btn btn-default btn-sm dropdown-toggle"
+                       ng-click="vm.dbremove(row)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+	  <!-- db end -->
+	  <!-- dbbackups start -->
+          <div ng-show="vm.selectedItem.contenttype === 'dbbackups'">
+            <button
+              type="button"
+              class="btn btn-default btn-sm dropdown-toggle"
+              ng-click="vm.dbtakebackup()">
+              <span class="glyphicon glyphicon-plus"></span> Take Bakup
+            </button>
+            <table class="table table-fixed" style="margin-top:10px;">
+              <tr>
+                <th>filename</th>
+                <th style="width:80px;">size</th>
+                <th style="width:120px;">timestamp</th>
+                <th style="width:60px;word-wrap: break-word;">download</th>
+                <th style="width:60px;word-wrap: break-word;">restore</th>
+              </tr>
+              <tr ng-repeat="bkup in vm.dbbackuplist track by $index">
+                <td>{{bkup.fname}}</td>
+                <td>{{bkup.size}}</td>
+                <td>{{bkup.timestamp}}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-default btn-sm dropdown-toggle"
+                    title="download"
+                    ng-click="vm.dbdownload(bkup.fname)">
+                    <span class="glyphicon glyphicon-save"></span>
+                  </button>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-default btn-sm dropdown-toggle"
+                    ng-click="vm.dbrestore(bkup.fname)">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+	  <!-- dbbackups end -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+*/</script>

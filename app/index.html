@@ -1,0 +1,29 @@
+<!doctype html><!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="auriqCJPath"> <![endif]--><!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" ng-app="auriqCJPath"> <![endif]--><!--[if IE 8]>
+<html class="no-js lt-ie9" ng-app="auriqCJPath"> <![endif]--><!--[if gt IE 8]><!--> <html class="no-js" ng-app="auriqCJPath"> <!--<![endif]--> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title ng-bind="title"></title> <meta name="description" content=""> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" id="meta-viewport"> <script type="text/javascript">if (navigator.platform.indexOf('iPad') !== -1) {
+      document.getElementById('meta-viewport').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    }</script> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="shortcut icon" href="favicon.ico"> <link rel="stylesheet" href="styles/vendor.7124e8f7.css"> <link rel="stylesheet" href="styles/main.a7c721ac.css"> </head> <script type="text/javascript">var projects = ['ad_web_purchase', 'apache_log', 'multi_device'];
+  var url = window.location.href;
+  var paramarr = (url.split('?')[1]) ? url.split('?')[1].split('&') : [];
+  var params = {};
+  for(var i=0,len=paramarr.length; i<len; i++){
+    var vals = paramarr[i].split('=');
+    var name = vals[0];
+    var nval = vals[1] || '';
+    params[name] = nval;
+  }
+  var uid = params.uid || projects[0];
+
+  var lid = 1;
+  var masterFlg = true;
+  var insttype = 'local';
+  var instnum = '1';
+  var apiport = (location.port==9000) ? '' : ':'+location.port;
+  var apihost = 'http://'+location.hostname+apiport+'/cjpath/api';</script> <body class="{{bodyClass}}" flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''"> <!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]--> <!-- Add your site or application content here --> <div class="container-fluid" id="app-wrapper" ng-controller="MainCtrl as main" ng-class="{ false: 'collapsed', true: 'opened' }[isSidebarOpened]"> <div sidebar ng-show="!main.islogout"></div> <div ng-view ng-show="!main.islogout"></div> <!-- AQ Log Tag --> <div ng-include src="'views/partials/loggedout.html'" ng-show="main.islogout"></div> <div ng-include src="'views/partials/aqlog.html'"></div> </div> <!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]--> <script src="scripts/vendor.ba0ea0a9.js"></script> <script src="scripts/scripts.880e0f67.js"></script> </body> </html>

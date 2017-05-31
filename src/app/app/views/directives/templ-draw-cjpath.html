@@ -1,0 +1,77 @@
+
+<div id="cjpath-content-wrapper-{{drawpattern}}" 
+  class="cjpath-content-wrapper"
+  ng-style="{'overflow-y' : fullscreenFlg ? 'scroll' : 'visible', 
+             'overflow-x' : 'visible',
+             'height' : fullscreenFlg ? field_h+'px' : '100%'}">
+  <div ng-repeat="rowobj in pathdata" class="clearfix cjpath-content-inner-wrapper" ng-style="css_each_row">
+    <!-- left box start -->
+    <div class="cjpath-leftbox pull-left" ng-style="{'width' : leftbox_w + 'px'}">
+      <div class="label-cvusercnt-label pull-left">
+        <h2><span>CV</span></h2>
+        <p class="label-cnts-bottom"><span>non-CV</span></p>
+      </div>
+      <div class="label-cvusercnt pull-left">
+        <h2 ng-style="{'width' : cnt_cv_w + 'px'}" title="CV Users Count">{{rowobj.trg_cnt.label}}</h2>
+        <p class="label-cnts-bottom"  ng-style="{'width' : cnt_all_w + 'px'}" title="non-CV Users Count">{{rowobj.rfr_cnt.label}}</p>
+      </div>
+      <div class="label-cvrate pull-left" ng-style="{'width' : rate_cv + 'px'}"><p>CV rate</p><h4 title="CV Rate">{{rowobj.cvrate.labeldetail.int}}<span class="label-cvrate-percentage">.{{rowobj.cvrate.labeldetail.dec}}%</span></h4></div>
+      <div class="button-for-detail pull-right" ng-if="drawpattern === 'main'">
+        <i class="fa fa-ellipsis-v" ng-style="css_icon_toopendetail"></i>
+        <div class="menu-list-wrapper" ng-if="drawpattern === 'main'">
+          <div class="menu-list-inner-wrapper">
+            <div class="menu-list-item" ng-click="open_detail(rowobj)">Drilldown</div>
+            <!--<hr>-->
+            <div class="menu-list-item" ng-click="open_sample_log(rowobj)">Log Sample</div>
+            <!--<div class="menu-list-item" ng-click="open_download_dialog(rowobj)">Log Download</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- left box end -->
+    <!-- right part start -->
+    <div class="cjpath-path-drawarea pull-right" ng-style="{'width' : 'calc(100% - ' + leftbox_w+'px)'}">
+      <!-- DRAW LINE -->
+      <div class="cjpath-path-line-area">
+        <!-- line to the last touchpoint before cv -->
+        <div ng-repeat="path in rowobj.path" ng-if="$index<rowobj.drawSpanNum" class="pull-left cjpath-path-each-line-area" ng-style="rowobj.styleEachTouchPath"><hr ng-class="{'dashed' : !rowobj.isCutBeforeCV  && rowobj.isDrawDummyCV && $index===rowobj.drawSpanNum-1}"></div>
+        <!-- dashed line from the dummy "direct" touchpoint to cv -->
+        <div class="pull-left cjpath-path-each-line-area" ng-if="rowobj.path.length===1" style="width:calc(100% - 50px);"><hr></div>
+      </div>
+      <!-- DRAW TOUCH POINT -->
+      <div class="cjpath-path-touchpoint-area">
+        <!-- draw "direct" touchpoint when user goes to cv directory -->
+        <div ng-if="rowobj.path.length===1 && rowobj.path[0].colorKey==='fakecv'" class="cjpath-path-each-touchpoint-area pull-left">
+          <div class="cjpath-path-each-touchpoint-direct"><div class="cjpath-path-each-label-main">direct</div></div>
+        </div>
+        <!-- draw touchpoint based on data -->
+        <div ng-repeat="path in rowobj.path" class="cjpath-path-each-touchpoint-area"
+          ng-class="{'pull-left' : $index < rowobj.drawSpanNum, 'pull-right' : $index===rowobj.drawSpanNum}"
+          ng-style="$index < rowobj.drawSpanNum ? rowobj.styleEachTouchPath : rowobj.styleLastTouchPath">
+          <div ng-if="path.colorKey==='fakecv'" class="cjpath-path-each-touchpoint-cv"><i class="fa fa-angle-right pull-left" ng-style="{'line-height' : rowobj.radius + 'px', 'margin-top': rowobj.mrgtop+'px'}"></i><div class="cjpath-path-each-label-main">{{path.label}}</div></div>
+          <div ng-if="path.colorKey!=='fakecv'" class="cjpath-path-each-touchpoint-standard" ng-style="{'background-color' : symbols[path.colorKey].color, 'width' : rowobj.radius + 'px', 'height' : rowobj.radius + 'px', 'border-radius': rowobj.radius/2 + 'px', 'margin-top': rowobj.mrgtop+'px'}" ng-class="drawpattern + '-' + path.shapeKey" ng-mouseover="hover_touchpoint(path.shapeKey, 'in')" ng-mouseout="hover_touchpoint(path.shapeKey, 'out')">
+            <i ng-if="($index!==0 && rowobj.path.length>1) || rowobj.path.length===1" class="fa fa-angle-right pull-left" ng-style="{'line-height' : rowobj.radius + 'px'}"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="pull-left">
+              <g transform="translate(25, 28) scale(6, 6)">
+                <path ng-attr-d="{{symbols[path.shapeKey].icon}}"></path>
+              </g>
+            </svg>
+          </div>
+          <div ng-if="path.colorKey!=='fakecv'" class="cjpath-path-each-label-main-standard">
+            <p class="ellipsed">{{path.label | ellipsedStringCjpath:drawpattern+'-touchpoint-labels':'60'}}</p>
+            <p class="full">{{path.label}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right part end -->
+  </div>
+  <!-- This is a hidden element for ruling max width -->
+  <div id="ruler-cjpath-leftbox" class="clearfix cjpath-leftbox">
+    <div class="label-cvusercnt-label pull-left"><h2><span>CV</span></h2><p class="label-cnts-bottom"><span>non-CV</span></p></div>
+    <div class="label-cvusercnt pull-left"><h2 id="ruler-cjpath-cvusercnt">{{maxvalues.trg_cnt.label}}</h2><p id="ruler-cjpath-usercnt" class="label-cnts-bottom">{{maxvalues.rfr_cnt.label}}</p></div>
+    <div class="label-cvrate pull-left" id="ruler-cjpath-cvrate"><p>CV rate</p><h4>{{maxvalues.cvrate.labeldetail.int}}<span class="label-cvrate-percentage">.{{maxvalues.cvrate.labeldetail.dec}}%</span></h4></div>
+    <div class="button-for-detail pull-right" ng-if="drawpattern === 'main'"><i class="fa fa-ellipsis-v"></i></div>
+  </div>
+  <span id="ruler-{{drawpattern}}-touchpoint-labels" style="visibility:hidden;"></span>
+</div>

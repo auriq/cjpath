@@ -1,0 +1,31 @@
+
+# ess cache files
+ess/*/task.log
+ess/*/header
+#ess/*/.conf
+#ess/*/.conf/*.spec
+#ess/*/.conf/*.json
+ess/*/.gui
+ess/*/cache/*/path-*.gz
+ess/*/cache/*/trend-*.gz
+ess/*/cache/*/event-*.gz
+ess/*/cache/*/rank-*.gz
+ess/*/.local
+ess/.local
+ess/*/products.tsv
+ess/*/*.csv
+ess/*/test.sh
+ess/*/t.sh
+
+# backup file/directory
+*.bak-*
+*-bak-*
+backups
+.sass-cache
+src/app/.tmp/
+
+# temporary setting
+ess-ana
+api/Classes/ess/shells/crontabmemo
+api/Classes/ess/shells/monitoring.sh
+api/Classes/ess/shells/scripts-ui/funcs/data/user*.csv

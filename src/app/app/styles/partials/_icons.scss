@@ -1,0 +1,76 @@
+$iconFontName: 'auriq';
+@include font-face("#{$iconFontName}", font-files("#{$iconFontName}.eot", "#{$iconFontName}.ttf", "#{$iconFontName}.woff", "#{$iconFontName}.svg"), '#{$iconFontName}.eot', normal, normal);
+
+[class^="icon-"], [class*=" icon-"], .icon_base {
+  &:before {
+    font-family: 'auriq';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.icon-help:before {
+  content: "\e612";
+}
+.icon-arrow-up:before {
+  content: "\e611";
+}
+.icon-arrow-down:before {
+  content: "\e600";
+}
+.icon-calendar:before {
+  content: "\e601";
+}
+.icon-chevron-down:before {
+  content: "\e602";
+}
+.icon-chevron-up:before {
+  content: "\e603";
+}
+.icon-fullscreen:before {
+  content: "\e604";
+}
+.icon-griphandle:before {
+  content: "\e605";
+}
+.icon-menu-closed:before {
+  content: "\e606";
+}
+.icon-menu-open:before {
+  content: "\e607";
+}
+.icon-nav-check-fill:before {
+  content: "\e608";
+}
+.icon-nav-check-outline:before {
+  content: "\e609";
+}
+.icon-nav-logout:before {
+  content: "\e60a";
+}
+.icon-nav-pie:before {
+  content: "\e60b";
+}
+.icon-nav-settings:before {
+  content: "\e60c";
+}
+.icon-remove:before {
+  content: "\e60d";
+}
+.icon-table-subSection:before {
+  content: "\e60e";
+}
+.icon-upload:before {
+  content: "\e60f";
+}
+.icon-widget-edit:before {
+  content: "\e610";
+}

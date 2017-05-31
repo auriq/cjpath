@@ -1,0 +1,46 @@
+.popover {
+  @include border-radius(5px);
+  @include box-shadow(none);
+  display: inline;
+  z-index: 8;
+  .popover-inner {
+    .popover-content {
+      color: $gray;
+      font-size: em(14px);
+      font-weight: 600;
+      padding: 1px 11px;
+    }
+  }
+}
+.popover-outer {
+	height: 30px;
+  text-align: center;
+  margin-right: -48px;
+  width: 100px;
+  position: absolute;
+  	top: -38px;
+  	right: 0;
+  .popover {
+	  padding-top: 5px;
+	  padding-bottom: 5px;
+	  position: static;
+	  left: auto;
+	  right: auto;
+	  &.top {
+		  .arrow {
+			  bottom: -4px;
+		  }
+	  }
+	  .popover-inner {
+		  display: inline;
+    	.popover-content {
+	    	display: inline;
+	    }
+	  }
+  }
+}
+.negative {
+	.popover-outer {
+	  transform: scaleX(-1);
+	}
+}

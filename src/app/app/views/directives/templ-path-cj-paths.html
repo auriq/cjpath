@@ -1,0 +1,113 @@
+
+<div class="widget-inner">
+
+  <div class="fullscreenWrapperPath">
+    <div ng-include src="'views/partials/fullscreen-topbar.html'"></div>
+  </div>
+  <div class="widget-header" style="padding : 18px 10px; background:none;">
+    <div class="widget-header-inner clearfix">
+      <div class="widget-header-inner-left pull-left">
+        <div class="widget-summary">
+          <!--<i class="icon-fullscreen" fullscreen-btn title="fullscreen mode"></i>-->
+          <span class="bold">Unique Paths : </span>
+          <span class="small-font">CV</span><span class="number">{{(totals.cv) ? (totals.cv | number) : '-'}}</span>
+          <span> / </span>
+          <span class="small-font">Total</span><span class="number">{{(totals.all) ? (totals.all | number) : '-'}}</span>
+        </div>
+      </div>
+      <div class="widget-header-inner-right pull-right">
+        <!-- options config start -->
+        <div class="widget-header-inner clearfix">
+          <div class="widget-header-inner-middle pull-left">
+            <div class="widget-controller clearfix">
+              <!-- touchpoint configuration option -->
+              <div class="pull-left" ng-include src="'views/directives/partial-path-cj-header-buttons-touchpointconfig.html'"></div>
+              <!-- Options to select which interaction set to see -->
+              <div class= "pull-right" ng-include src="'views/directives/partial-path-cj-header-buttons-touchpointspec.html'"></div>
+      
+            </div>
+          </div>
+          <div class="widget-header-inner-right pull-right">
+            <div class="widget-controller">
+              <!-- apply button -->
+              <span 
+                 ng-if="masterflg"
+                 ng-click="forceRedoCalc()" 
+                 style="margin-left: 5px;"
+                 class="btn btn-default pull-right" 
+                 ng-disabled="isviewmode || !isLoaded"
+                 style="margin-left:0px;"
+                 ><i class="fa fa-refresh"></i></span>
+              <span 
+                 ng-click="applyFilterOption()" 
+                 style="min-width: 60px;"
+                 class="btn btn-default btn-apply pull-right" 
+                 ng-class="{isActiveApply : !(tempfilterbuildpathobj.label==filterbuildpathobj.label && temptillcv.label==tillcv.label && temppathorder.label==pathorder.label && tpdepth==tpdepth_temp)}"
+                 ng-disabled="isviewmode ? true : ((tempfilterbuildpathobj.label==filterbuildpathobj.label && temptillcv.label==tillcv.label && temppathorder.label==pathorder.label && tpdepth==tpdepth_temp) || !isLoaded)"
+                 style="margin-left:0px;"
+                 >{{words.apply || 'Apply'}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- option config end -->
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="{{optcont.styleClass}}Inner">
+    <div class="cj-paths-wrapper clearfix">
+      <!-- tab start -->
+      <div>
+        <div class="tab-content tab-outside">
+          <div class="traj-content-field" ng-class="{{optpath.trajectoryType}}">
+              <!-- header (mostly options) start -->
+              <!-- Paging and CSV dl buttons-->
+              <div class="header-options clearfix path_dist_options">
+                <!-- dist type (dist to CV) -->
+                <!--<div class="pull-left" ng-include src="'views/directives/partial-path-cj-header-buttons-disttype.html'"></div>-->
+                <!--  paging options  -->
+                <div class="pull-left paging-wrapper" ng-include src="'views/directives/partial-path-cj-header-buttons-paging.html'"></div>
+                <!--  download  -->
+                <div class="pull-right" ng-include src="'views/directives/partial-path-cj-header-buttons-download.html'"></div>
+                <!-- search box -->
+                <div class="pull-right" ng-include src="'views/directives/partial-path-cj-header-buttons-searchbox.html'"></div>
+              </div>
+              <!-- header (mostly options) end -->
+              <!-- main contents start -->
+              <div class="contentField" style="padding-top:20px;">
+                <!-- draw touchpoints -->
+                <draw-cj-path ng-show="isLoaded && !noData && !noParameterAvailable && isSelectedExist" 
+                  masterflg="masterflg"
+                  pathdata="maindata" symbols="symbols" appheight="c_h" isviewmode="isviewmode" optcont="optcont"
+                  optglbl="optglbl" drawpattern="'main'" pagerange="pagerange" optpath="pathdetailoption" words="words"></draw-cj-path>
+
+                <!-- No Touchpoint Grouping Available -->
+                <div ng-show="isLoaded && !isSelectedExist" class="loading">
+                   Touchpoints definition is not applied. (Click "apply")
+                </div>
+                <!-- No Touchpoint Grouping Available -->
+                <div ng-show="isLoaded && noParameterAvailable" class="loading">
+                   No touchpoints grouping definition.
+                </div>
+                <!-- No Data Available -->
+                <div ng-show="isLoaded && noData" class="loading">
+                   No Data Available.
+                </div>
+                <!-- loading -->
+                <div ng-hide="isLoaded" class="loading">
+                  <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>Loading ...
+                </div>
+              </div>
+              <!-- main contents end -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab end -->
+    </div>
+  </div>
+</div>
+
+

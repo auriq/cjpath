@@ -1,0 +1,153 @@
+<div class="modal-wrapper modal-grouping-wrapper" style="padding: 15px;">
+  <h3 style="text-align:center;" ng-if="operationtype === 'add'">Add {{menuObj.label}}</h3>
+  <h3 style="text-align:center;" ng-if="operationtype === 'edit'">Edit {{menuObj.label}}</h3>
+  <div ng-if="isLoading" style="text-align:center;">
+    <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+  </div>
+  <div ng-if="!isLoading">
+    <div>
+      <div ng-class="{'has-error' : setNameIsError}" style="border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 0 rgba(255,255,255,1);padding-bottom:10px;" class="clearfix">
+        <label for="group-name" class="pull-left" style="width:110px;line-height:2;">Group Name :</label>
+        <input type="text" class="form-control pull-right" id="group-name" ng-model="setName" ng-change="checkValue(setName, 'gname')" required placeholder="Input {{menuObj.params.esspara=='usrseg' ? 'user segment' : 'touchpoint'}} group name" style="width: calc(100% - 110px);" />
+      </div>
+      <div style="margin-top:30px;border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 0 rgba(255,255,255,1);margin-bottom:30px;padding-bottom:30px;">
+        <h4>{{menuObj.params.esspara=='usrseg' ? 'User segment' : 'Touchpoint' }} conditions</h4>
+        <table class="table table-striped" style="margin-bottom:10px;">
+          <tr ng-repeat="filterObj in filterObjArr">
+            <td class="td-fixed" style="vertical-align : middle; width:60px;">
+              <button
+               type="button"
+               class="btn btn-default btn-sm dropdown-toggle"
+               title="remove"
+               ng-if="filterObjArr.length !== 1"
+               ng-disabled="filterObjArr.length === 1"
+               ng-click="removeCondition(filterObj, $index)">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+            </td>
+            <td>
+              <div>
+                <table class="table">
+                  <tr ng-repeat="row in filterObj" ng-show="['condname', 'condvalue', 'condselection'].indexOf(row.type)!==-1">
+                    <!--<td class="td-fixed-index" style="vertical-align:middle;">{{$index+1}}</td>-->
+                    <td ng-show="row.type === 'condname'">
+                      <div ng-class="{'has-error' : row.isError}">
+                        <input
+                          type="text"
+                          class="form-control"
+                          ng-change="checkValue(row.value, $parent.$index, row)"
+                          required
+                          placeholder="{{row.label}}"
+                          ng-model="row.value" />
+                      </div>
+                    </td>
+                    <td ng-show="row.type === 'condselection' && menuObj.params.esspara === 'usrseg'" style="padding-top:0px; padding-bottom:4px;height:auto;">
+                      <div class="clearfix">
+                        <div class="pull-left" style="width:calc(100% - 40px); font-family:'Source Sans Pro'; color:rgb(106,127,141)">
+                          <span ng-repeat="sobj in row.value track by $index" class="pull-left">
+                            <!--<span ng-if="$index > 0">, </span>-->
+                            <span ng-if="$index > 0" style="margin-left:3px;"></span>
+                            <span style="border:1px solid rgba(57, 159, 139, 0.5); border-radius:4px; padding:3px 6px; display:inline-block; margin-bottom:3px;">
+                              {{sobj.condName}}
+                              <span ng-if="sobj.userinputs.length > 0">(</span><span ng-repeat="inputs in sobj.userinputs track by $index"><span ng-if="$index > 0">, </span>{{inputs.value}}</span><span ng-if="sobj.userinputs.length > 0">)</span>
+                            </span>
+                          </span>
+                        </div>
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle pull-right" ng-click="row.isPartsSelectionCollapsed = (row.isPartsSelectionCollapsed===undefined) ? false : !row.isPartsSelectionCollapsed">
+                          <i class="fa fa-pencil"></i>
+<!--
+                          <i ng-if="row.isPartsSelectionCollapsed!==false"  class="fa fa-chevron-down"></i>
+                          <i ng-if="row.isPartsSelectionCollapsed===false" class="fa fa-chevron-up"></i>
+-->
+                        </button>
+                      </div>
+<!--
+                      <span ng-if="row.isPartsSelectionCollapsed!==false">Open option list</span>
+                      <span ng-if="row.isPartsSelectionCollapsed===false">Close option list</span>
+-->
+                      <div uib-collapse="row.isPartsSelectionCollapsed !== false">
+                        <div ng-include src="'views/modals/include-optionparts-selection-table.html'"></div>
+                      </div>
+                    </td>
+                    <td ng-show="row.type === 'condvalue' && menuObj.params.esspara === 'pathtpdef'">
+<!--
+                    <td ng-show="row.type === 'condvalue'">
+                      <div ng-show="menuObj.params.esspara === 'usrseg'">
+                        <textarea 
+                          class="form-control"
+                          rows="2"
+                          placeholder="preview of the above selection"
+                          ng-disabled="true"
+                          ng-model="row.value"></textarea>
+                      </div>
+-->
+                      <div ng-show="menuObj.params.esspara === 'pathtpdef'">
+                        <div ng-show="row.suggest.length > 0" class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+                          <select class="form-control" ng-model="ssug" ng-change="selectSuggest($parent.$index, row, ssug)">
+                            <option value="">Select from suggestion</option>
+                            <option ng-repeat="sug in row.suggest track by $index" value="{{sug}}" ng-if="sug!==''">{{sug}}</option>
+                          </select>
+                        </div>
+                        <textarea 
+                          class="form-control"
+                          rows="5"
+                          ng-change="conditionIsChanged()"
+                          placeholder="{{row.label}}"
+                          ng-model="row.value"></textarea>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+<!--
+          <tr ng-repeat="row in filterObjArr">
+            <td class="td-fixed-index" style="vertical-align:middle;">{{$index+1}}</td>
+            <td ng-repeat="row in row" ng-show="['condname', 'condvalue'].indexOf(row.type)!==-1">
+              <div ng-show="row.type === 'condname'" ng-class="{'has-error' : row.isError}">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-change="checkValue(row.value, $index, row)"
+                  required
+                  placeholder="{{row.label}}"
+                  ng-model="row.value" />
+              </div>
+              <div ng-show="row.type === 'condvalue'">
+                <div ng-show="row.suggest.length > 0" class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-th-list"></i></span>
+                  <select class="form-control" ng-model="ssug" ng-change="selectSuggest(row, ssug)">
+                    <option value="">Select from suggestion</option>
+                    <option ng-repeat="sug in row.suggest" value="{{sug}}" ng-if="sug!==''">{{sug}}</option>
+                  </select>
+                </div>
+                <textarea 
+                  class="form-control"
+                  rows="5"
+                  placeholder="{{row.label}}"
+                  ng-model="row.value"></textarea>
+              </div>
+            </td>
+          </tr>
+-->
+        </table>
+        <button
+         type="button"
+         class="btn btn-default btn-sm dropdown-toggle"
+         ng-click="addCondition()">
+          <span class="glyphicon glyphicon-plus"></span>
+        </button>
+      </div>
+
+      <div style="margin-bottom:30px;" class="clearfix">
+        <textarea class="form-control" ng-model="setComment" ng-change="commentIsChanged(setComment)" placeholder="Comment" rows="5"></textarea>
+      </div>
+      
+      <div class="footer clearfix" style="width: 130px; margin:0 auto;">
+        <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button>
+        <button type="button" class="btn btn-default pull-left" ng-class="{'btn-isoktosave':isOkToSave}" style="margin-left:10px;" ng-disabled="!isOkToSave" ng-click="save()">save</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+
+<div class="dropdown-container" uib-dropdown btn-group ng-show="!isLoading" style="margin-left:10px; padding-top:5px; width:100%;">
+  <button type="button" class="btn btn-default btn-globalfilter btn-sm dropdown-toggle" 
+          uib-dropdown-toggle data-toggle="uib-dropdown"
+          ng-disabled="isviewmode"
+          style="width:100%;min-width:170px; overflow:hidden; margin-right:0px; padding-left:0px;"
+          title="Select Project"
+          aria-haspopup="true" aria-expanded="false">
+    <span class="icon-chevron-down pull-right" style="margin-left:0px; font-size:7px;"></span>
+    {{uid}}
+  </button>
+  <ul class="dropdown-menu dropdown-default dropdown-globalfilter ng-scope" role="menu" uib-dropdown-menu="" style="min-width:280px !important;">
+    <li><h4 style="padding:0px 22px; color:#6A7F8D;">Select Project</h4></li>
+    <li ng-repeat="item in projects" ng-if="item != uid">
+      <a href="javascript: void(0);" ng-click="switchProjects(item)"> {{item}}</a>
+    </li>
+  </ul>
+</div>
+
+
+

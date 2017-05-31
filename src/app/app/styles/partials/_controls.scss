@@ -1,0 +1,256 @@
+.slide-checkbox-default {
+  @include slider-checkbox(190px, $white, $gray, $gray-lighter2, 14px);
+   label {
+    border: 1px solid $gray-lighter2;
+    height: 28px;
+    @include box-shadow(inset 1px 1.7px 0 $gray-lighter2);
+     .dot {
+      height: 28px;
+      top: -1px;
+    }
+    .value-text {
+      height: 28px;
+      line-height: 27px;
+    }
+  }
+
+  &.slide-checkbox-inline {
+    @include inline-block;
+  }
+  &.slide-checkbox-sm {
+    height: 28px;
+  }
+}
+
+.dropdown-container {
+  position: relative;
+  .dropdown-menu, .dropdown-2ndlayer {
+    border-color: $white-darker;
+    left: -9px;
+    //> li {
+    .fa{
+      color: $icon-blue;
+    }
+    .user-select{
+      background-color: $white-darker;
+    }
+    li {
+      list-style: none;
+      background-color: $white;
+      a {
+        // Style for "Upload"
+        color: $gray;
+        font-size: em(17px);
+        font-weight: 400;
+        padding: 9px 22px;
+        cursor: pointer;
+        @include icon-selector() {
+          display: inline-block;
+          font-size: em(13px,17px);
+          margin-right: 5px;
+          text-align: center;
+          width: 18px;
+        }
+        .glyphicon {
+          font-size: em(19px,17px);
+          margin-right: 5px;
+          width: 18px;
+        }
+        .icon-nav-check-fill {
+          font-size: em(21px);
+          position: relative;
+          top: 3px;
+          width: 21px;
+          @include transition(color $transition-speed);
+        }
+        &:hover, &.active {
+          background-color: $white2;
+          .icon-nav-check-fill {
+            color: $icon-blue;
+          }
+        }
+      }
+      &:first-child {
+        @include border-radius(4px 4px 0 0);
+      }
+      &:last-child {
+        @include border-radius(0 0 4px 4px);
+      }
+    }
+    &:hover {
+      &:before {
+        border-color: transparent transparent $white2 transparent;
+      }
+    }
+  }
+  .dropdown-menu {
+    &:before {
+      border-color: transparent transparent $white transparent;
+      border-style: solid;
+      border-width: 0 11px 8px 11px;
+      content: '';
+      height: 0;
+      left: 17px;
+      position: absolute;
+      top: -8px;
+      width: 0;
+      z-index: 2;
+      @include transition(border-color $transition-speed);
+    }
+
+    &:after {
+      border-color: transparent transparent $white-darker transparent;
+      border-style: solid;
+      border-width: 0 12px 9px 12px;
+      content: '';
+      height: 0;
+      left: 16px;
+      position: absolute;
+      top: -9px;
+      width: 0;
+      z-index: 1;
+    }
+  }
+  &.drop-right {
+    .dropdown-menu {
+      left: auto;
+      right: -9px;
+      &:before {
+        left: auto;
+        right: 17px;
+      }
+      &:after {
+
+        left: auto;
+        right: 16px;
+      }
+    }
+  }
+  li{
+    position:relative;
+    .list-2ndlayer-icon{
+      position:absolute;
+      top:12px;
+      right:8px;
+      color:$gray-lighter2;
+    }
+    &:hover{
+      .list-2ndlayer-icon{
+        color:$gray;
+      }
+    }
+    ul.dropdown-2ndlayer{
+      position:absolute;
+      top:0px;
+      left : calc(100% + 7px);
+      padding : 0px;
+      width:100%;
+      border:1px solid $white-darker;
+      @include border-radius(4px 4px 4px 4px);
+
+      li{
+        a{
+          display:block;
+          //clear:both;
+        }
+      }
+
+      //border-color: transparent transparent $gray transparent;
+      //border-color: $white-darker;
+      &:before {
+	border-top: 8px solid transparent;
+	border-right: 8px solid $white;
+	border-bottom: 8px solid transparent;
+	border-left: 8px solid transparent;
+        height: 0;
+        width: 0;
+        position: absolute;
+        left: -16px;
+        top: 9px;
+        content: '';
+        z-index: 2;
+        @include transition(border-color $transition-speed);
+      }
+      &:after {
+	border-top: 9px solid transparent;
+	border-right: 8px solid $white-darker;
+	border-bottom: 9px solid transparent;
+	border-left: 8px solid transparent;
+        content: '';
+        height: 0;
+        left: -17px;
+        position: absolute;
+        top: 8px;
+        width: 0;
+        z-index: 1;
+      }
+      &:hover{
+        &:before{
+	  border-top: 8px solid transparent;
+	  border-right: 8px solid $white;
+	  border-bottom: 8px solid transparent;
+	  border-left: 8px solid transparent;
+        }
+        &:after{
+	  border-top: 9px solid transparent;
+	  border-right: 8px solid $white-darker;
+	  border-bottom: 9px solid transparent;
+	  border-left: 8px solid transparent;
+        }
+      }
+
+    }
+  }
+  .dropdown-globalfilter{
+    min-width:300px !important;
+    li{
+      width:100%;
+    }
+  }
+  /*
+    Help (description tip) for cache list
+  */
+  .dropdown-help-tip-contains{
+    position:relative;
+    .dropdown-help-tip-trig-button{
+      width:10px;
+      min-width:0px !important;
+      border:none;
+      box-shadow:none !important;
+      color : $icon-green;
+      background-color: $white;
+      margin-top:4px !important;
+      margin-left:4px;
+      &.active{
+        i{
+          color : $white;
+        }
+      }
+      &:hover, &.active{
+        i{
+          color : $white !important;
+        }
+        background-color: $icon-green;
+      }
+    }
+    .dropdown-help-tip-wrapper {
+      position:absolute;
+      right:0px;
+      .dropdown-help-tip {
+        position:absolute;
+        top:4px;
+        left:5px;
+        width:300px;
+        word-wrap: break-word;
+        border:1px solid $white-darker;
+        background-color: $white;
+        @include box-shadow(0 2px 0 $white-shadow);
+        @include border-radius(4px 4px 4px 4px);
+        padding : 5px 10px;
+      }
+    }
+  }
+
+
+}
+

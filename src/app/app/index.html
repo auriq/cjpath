@@ -1,0 +1,165 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="auriqCJPath"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" ng-app="auriqCJPath"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" ng-app="auriqCJPath"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="auriqCJPath"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title ng-bind="title"></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        id="meta-viewport"/>
+  <script type="text/javascript">
+    if (navigator.platform.indexOf('iPad') !== -1) {
+      document.getElementById('meta-viewport').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    }
+  </script>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="shortcut icon" href="favicon.ico">
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+  <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+  <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css({.tmp,app}) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<script type="text/javascript">
+  var projects = ['ad_web_purchase', 'apache_log', 'multi_device'];
+  var url = window.location.href;
+  var paramarr = (url.split('?')[1]) ? url.split('?')[1].split('&') : [];
+  var params = {};
+  for(var i=0,len=paramarr.length; i<len; i++){
+    var vals = paramarr[i].split('=');
+    var name = vals[0];
+    var nval = vals[1] || '';
+    params[name] = nval;
+  }
+  var uid = params.uid || projects[0];
+
+  var lid = 1;
+  var masterFlg = true;
+  var insttype = 'local';
+  var instnum = '1';
+  var apiport = (location.port==9000) ? '' : ':'+location.port;
+  var apihost = 'http://'+location.hostname+apiport+'/cjpath/api';
+
+</script>
+<body class="{{bodyClass}}" flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<div class="container-fluid" id="app-wrapper"
+     ng-controller="MainCtrl as main"
+     ng-class="{ false: 'collapsed', true: 'opened' }[isSidebarOpened]">
+  <div sidebar ng-show="!main.islogout"></div>
+  <div ng-view ng-show="!main.islogout"></div>
+  <!-- AQ Log Tag -->
+  <div ng-include src="'views/partials/loggedout.html'" ng-show="main.islogout"></div>
+  <div ng-include src="'views/partials/aqlog.html'"></div>
+</div>
+
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+<!-- build:js({.tmp,app}) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/StickyTableHeaders/js/jquery.stickytableheaders.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="bower_components/d3/d3.js"></script>
+<script src="bower_components/nvd3/build/nv.d3.js"></script>
+<script src="bower_components/angular-nvd3/dist/angular-nvd3.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-scenario/angular-scenario.js"></script>
+<script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+<script src="bower_components/datatables-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+<script src="bower_components/jqlite/jqlite.1.1.1.js"></script>
+<script src="bower_components/jquery.fixedheadertable/jquery.fixedheadertable.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/flow.js/dist/flow.js"></script>
+<script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+<script src="bower_components/sass-bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- endbuild -->
+
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- App -->
+<script src="scripts/app.module.js"></script>
+<script src="scripts/app.constants.js"></script>
+<script src="scripts/app.run.js"></script>
+<script src="scripts/app.routes.js"></script>
+<script src="scripts/app.httpconfig.js"></script>
+
+<!-- Resource -->
+<script src="scripts/resource/API.js"></script>
+
+<!-- Filter -->
+<script src="scripts/filters/ordinalNumberSuffix.js"></script>
+
+<!-- Services -->
+<script src="scripts/services/d3service.js"></script>
+<script src="scripts/services/pathsService.js"></script>
+<script src="scripts/services/envService.js"></script>
+
+
+<!-- Factories -->
+<script src="scripts/factories/colorsFactory.js"></script>
+<script src="scripts/factories/urlsFactory.js"></script>
+<script src="scripts/factories/funcCommonFactory.js"></script>
+<!--<script src="scripts/factories/funcCvpathFactory.js"></script>-->
+<script src="scripts/factories/formatCheckFactory.js"></script>
+
+<!-- Controllers -->
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/LandingCtrl.js"></script>
+<script src="scripts/controllers/PathsCtrl.js"></script>
+<script src="scripts/controllers/CachesCtrl.js"></script>
+<script src="scripts/controllers/ConfigsCtrl.js"></script>
+<!--<script src="scripts/controllers/DevtoolsCtrl.js"></script>-->
+
+<!-- Directives -->
+<!--
+<script src="scripts/directives/common/horizontal-hover-scroll.js"></script>
+<script src="scripts/directives/common/resize.js"></script>
+<script src="scripts/directives/common/btn-group.js"></script>
+<script src="scripts/directives/common/slide-checkbox.js"></script>
+<script src="scripts/directives/common/popover.js"></script>
+<script src="scripts/directives/common/upload-file.js"></script>
+<script src="scripts/directives/common/upload-file-status-viewer.js"></script>
+<script src="scripts/directives/common/help-tour.js"></script>
+<script src="scripts/directives/common/dropdown-menu.js"></script>
+-->
+<script src="scripts/directives/controller/sidebar.js"></script>
+<script src="scripts/directives/controller/global-options.js"></script>
+<script src="scripts/directives/contents/parts/fullscreen-btn.js"></script>
+<script src="scripts/directives/contents/parts/aq-chart.js"></script>
+<script src="scripts/directives/contents/parts/aq-table.js"></script>
+<!--<script src="scripts/directives/contents/parts/each-path-detail.js"></script>-->
+<script src="scripts/directives/contents/path-summary-wrapper.js"></script>
+<script src="scripts/directives/contents/path-summary.js"></script>
+<script src="scripts/directives/contents/path-cj-paths.js"></script>
+<script src="scripts/directives/contents/ess-loaded-data-view.js"></script>
+<script src="scripts/directives/contents/view-calc-setting.js"></script>
+<!-- endbuild -->
+</body>
+</html>

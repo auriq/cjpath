@@ -1,0 +1,148 @@
+
+<div class="stickyPanelWrapper clearfix" ng-show="main.islogout" ng-style="stickypanelcss">
+  <div class="stickyPanelBackground animate-slidein-bg clearfix"></div>
+  <div class="stickyPanelInner animate-slidein clearfix" ng-bind-html="words.sessionout">
+  </div>
+</div>
+
+<div class="main-content" id="main-content" ng-show="!main.islogout">
+  <div class="main-content-inner" resize ng-style="setMinWidth(87);" ng-class="'{{bodyClass}}'">
+
+    <help-tour contenttype="'paths'" startidx="0" isopen="vm.isOpenHelp"></help-tour>
+    <header class="header clearfix" id="header">
+      <div class="logo-icon pull-left"></div>
+      <div class="logo pull-left"></div>
+
+      <!-- log out -->
+      <i class="logout-btn icon-nav-logout pull-right" ng-click="vm.logout()" title="Sign Out" 
+         style="cursor:pointer;font-size:26px;margin-left:3px;margin-right:0px;"></i>
+
+
+      <div class="header-controls pull-right" style="margin-top:-15px; margin-right:10px;">
+
+        <!-- project switch button / udbd status / log count summary -->
+        <div class="pull-right">
+
+          <!-- project switch panel -->
+          <div ng-show="projects.length > 0" style="width:100%;padding:0 6px;" class="clearfix">
+            <p class="pull-left" style="line-height:35px; color:#A4ADC1; margin:0;">project </p>
+            <div ng-include src="'views/partials/projects-switch.html'" class="pull-right" style="width:calc(100% - 55px);"></div>
+          </div>
+
+          <div ng-style="{'margin-top': projects.length>0 ? 'none' : '17px'}">
+            <div style="width:100%;" class="clearfix">
+              <!-- event count --> 
+              <div class="pull-left" ng-show="vm.envStatus.isReadyForApp">
+                <div class="ess-loaded-data-view-wrapper">
+                  <ess-loaded-data-view  class="widget-directive" uid="uid" lid="lid" 
+                    isessready="vm.envStatus.isReadyForApp"></ess-loaded-data-view>
+                </div>
+              </div>
+    
+              <!-- udbd memory usage parts -->
+              <div class="pull-right" ng-show="vm.envStatus.isReadyForApp || vm.envStatus.isImportFailed" ng-include src="'views/partials/udbd-status.html'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </header>
+<!--
+{{vm.envStatus}}
+{{vm.appStatus}}
+{{vm.otherUserStatus}}
+{{vm.isGlobalSelectChanged}}
+-->
+    <!-- When occupied by other user-->
+    <div class="content" ng-show="vm.otherUserStatus.isOccupied">
+      <div class="widgets-container clearfix" ng-include src="'views/partials/dialog-takeover.html'"></div>
+    </div>
+    <div ng-show="!vm.otherUserStatus.isOccupied">
+      <!-- Loading dialog -->
+      <div ng-show="vm.appStatus.isLoading">
+        <div class="widgets-container clearfix" ng-include src="'views/partials/dialog-loading.html'"></div>
+      </div>
+      <!-- View Mode -->
+      <div ng-show="vm.isViewMode">
+        <div class="widgets-container clearfix" ng-include src="'views/partials/message-viewmode.html'"></div>
+      </div>
+      <!-- When loading is done -->
+      <div ng-show="!vm.appStatus.isLoading">
+        <div class="content" id="paths-content" ng-show="vm.envStatus.isDoneInstance">
+          <!-- Head Menus -->
+          <div class="content-header clearfix">
+            <div class="clearfix content-header-left">
+              <global-options 
+                    class="pull-left"
+                    globalparams="vm.globalParams.global"
+                    isviewmode="vm.isViewMode"
+                    isparamavailable="vm.isParamAvailable"
+                    words="vm.wordsDict"
+                    isonlylabelmode="vm.userSelect.isCollapseDataImportPanel"
+                    isglobalselectchanged="vm.isGlobalSelectChanged"
+                    ng-style="{width : (vm.envStatus.isReadyForApp && masterFlg) ? 'calc(100% - 110px)' : 'calc(100% - 70px)'}"></global-options>
+              <div class="globaloptions-buttons pull-right"
+                   style="padding-top:14px;"
+                   ng-style="{width : (vm.envStatus.isReadyForApp && masterFlg) ? '110px' : '70px'}">
+                <!-- Info for applied conditions -->
+<!--
+                <i class="glyphicon glyphicon-info-sign btn pull-right"
+                   ng-click="vm.isCollapsedViewSetting = !vm.isCollapsedViewSetting"></i>
+                <view-calc-setting optglbl="vm.globalParams" iscollapsed="vm.isCollapsedViewSetting"></view-calc-setting>
+-->
+                <!-- Refresh conditions -->
+                <span class="btn btn-default pull-right" style="margin-left:5px;" 
+                   ng-disabled="!vm.isAppLoaded"
+                   ng-show="vm.envStatus.isReadyForApp && masterFlg" 
+                   ng-click="filterConditionRefresh()">
+                   <i class="fa fa-refresh"></i>
+                </span>
+                <!-- Apply! -->
+                <span class="btn btn-default btn-apply pull-right"
+                      style="margin-left : 0px;"
+                      ng-class="{isActiveApply : vm.isApplyBttnActive}"
+                      ng-disabled="!vm.isApplyBttnActive || vm.isViewMode || !vm.isAppLoaded"
+                      ng-click="dataImportApply()">
+                 {{vm.wordsDict.buttons.apply}}
+                </span>
+              </div>
+            </div>
+ 
+<!--
+            <div class="pull-right content-header-right">
+              <i class="fa fa-fw" style="color:#96ADBC; margin-top:10px; cursor:pointer;" 
+                ng-class="{'fa-ellipsis-h' : vm.userSelect.isCollapseDataImportPanel, 'fa-ellipsis-v':!vm.userSelect.isCollapseDataImportPanel}"
+                ng-click="vm.setCollapseImportDataPanel()"></i>
+            </div>
+-->   
+          </div>
+          <!-- filetering setting content -->
+          <!--<path-filter-options optglbl="vm.globalParams" iscollapsed="vm.isCollapsed" savestatus="vm.saveStatus" pattern="'global'" isessread="vm.isEssImported"></path-filter-options>-->
+    
+          <!-- ESS env is ready, but data is not imported -->
+          <div class="clearfix" ng-show="!vm.envStatus.isReadyForApp">
+            <div ng-if="!isDemoProject" ng-include src="'views/partials/help-import.html'"></div>
+            <!-- When import is failed -->
+            <div class="alert alert-danger" ng-show="vm.importFailedMessage !== ''">
+              <strong>ERROR : </strong> {{vm.importFailedMessage}}
+            </div>
+          </div>
+          <!-- ESS env is ready and data is imported, ready to show contents -->
+          <div ng-show="vm.envStatus.isReadyForApp">
+            <!-- Main Content Part -->
+            <div>
+              <div class="widgets-container clearfix" ng-include src="'views/partials/paths.html'"></div>
+            </div>
+            <div ng-show="vm.isViewMode" style="height:100px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div id="help-tip-wrapper"><div class="help-tip"><h3></h3><p></p></div></div>
+  </div>
+</div>
+

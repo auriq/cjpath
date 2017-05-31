@@ -1,0 +1,228 @@
+.sidebar {
+  background-color: $gray-darker;
+  border-right: 7px solid $gray-lighter;
+  bottom: 0;
+  display: block;
+  float: left;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: 357px;
+  z-index: 1000;
+  @include transition(width 0.3s);
+
+  .sidebar-wrapper {
+    padding: 79px 20px 25px 31px;
+    @include opacity(1);
+    position: relative;
+    @include transition(visibility, opacity $transition-speed);
+    @include transition-delay(0s);
+    visibility: visible;
+    width: 350px;
+  }
+
+  .collapse-btn {
+    background: none;
+    border: none;
+    color: $white;
+    display: block;
+    float: right;
+    font-size: em(16px);
+    height: 69px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 79px;
+    z-index: 1;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .uncollapse-btn {
+    background-color: transparent;
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    @include transition(background-color 0.3s);
+  }
+
+  .sidebar-user {
+    color: $white;
+    font-size: em(18px);
+    margin-bottom: 37px;
+    text-align: center;
+    .user-photo {
+
+    }
+    .user-name {
+      color: $white;
+      font-size: em(18px);
+      line-height: 1;
+      margin-bottom: 0;
+      margin-top: 10px;
+    }
+    .user-org {
+      color: $gray;
+      font-size: em(16px);
+      line-height: 1;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+  }
+
+  .panel-group{
+    margin-left: -31px;
+    margin-right: -20px;
+    .glyphicon, .fa{
+      position : static;
+      display : block;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .accordion-toggle-item {
+      background-color: $gray-dark;
+      border: none;
+      border-left: 5px solid $gray-dark;
+      @include border-radius(0);
+      color: #abb6c7;
+      padding: 0;
+      @include transition(border-color 0.3s);
+      cursor: pointer;
+      font-size: em(16px);
+      font-weight: 400;
+      height: 61px;
+      line-height: 37px;
+      padding: 10px 20px 10px 25px;
+      text-transform: uppercase;
+      .glyphicon_title{
+        -webkit-font-smoothing: initial !important;
+        font-family: $font-family-serif, $font-family-japanese !important;
+      }
+      &:before {
+        font-size: 18px;
+        margin-right: 6px;
+        position: relative;
+        top: 3px;
+        @include transition(color 0.3s);
+      }
+      .arrow-icon {
+        float: right;
+        &:before {
+          color: $gray-darker;
+          font-size: em(7px);
+        }
+      }
+    }
+    uib-accordion-group{
+      &.panel-active, &:hover {
+        .accordion-toggle-item {
+          border-left-color: $icon-blue;
+          color: $white;
+          a {
+            color: $white;
+          }
+          &:before {
+            color: $icon-blue;
+          }
+        }
+      }
+    }
+    // inside of the accordion 
+    .nav {
+      border-top: none;
+      padding: 33px 0;
+      margin-top: -18px;
+      > li {
+        color: $gray;
+        cursor: pointer;
+        padding: 13px 29px 14px;
+        @extend .icon_base;
+        @include transition(background-color, color $transition-speed);
+        &:before {
+          @extend .icon-nav-check-outline;
+          font-size: em(21px);
+          margin-right: 10px;
+          position: relative;
+          top: 4px;
+          z-index: 1;
+        }
+        &:hover {
+          background-color: $gray-blue;
+          text-decoration: none;
+        }
+        &.active {
+          color: $white;
+          @extend .icon-nav-check-fill;
+          &:before {
+            color: $icon-blue;
+          }
+          &:after {
+            background-color: $white;
+            @include border-radius(50%);
+            content: '';
+            display: block;
+            height: 14px;
+            left: 33px;
+            position: absolute;
+            top: 19px;
+            width: 14px;
+            z-index: 0;
+          }
+        }
+      }
+    }
+    .slide-checkbox {
+      margin-bottom: 30px;
+      text-align: center;
+      @include slider-checkbox();
+      > label {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+.sidebar-overlay {
+  background: $white;
+  visibility: hidden;
+  height: 100%;
+  left: 0;
+  @include opacity(0);
+  position: fixed;
+  top: 0;
+  display: none;
+  @include transition(opacity, visibility $transition-speed);
+  width: 100%;
+  z-index: 999;
+}
+
+.collapsed {
+  .sidebar {
+    overflow-y: hidden;
+    width: 87px;
+    .sidebar-wrapper {
+      visibility: hidden;
+      @include opacity(0);
+    }
+    .uncollapse-btn {
+      background-color: $gray-dark;
+      display: block;
+    }
+  }
+}
+.opened {
+  .sidebar-overlay {
+    visibility: visible;
+    display: block;
+    @include opacity(0.4);
+  }
+  &.uploading {
+    .sidebar-overlay{
+      z-index: 2000;
+    }
+}
+}

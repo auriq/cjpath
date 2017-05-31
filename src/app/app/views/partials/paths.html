@@ -1,0 +1,60 @@
+
+<div class="main-widgets clearfix" style="margin-bottom:30px;margin-top:30px;">
+  <div class="row clearfix">
+    <div>
+      <ul class="main-app-list">
+        <li ng-repeat="cont in vm.contentsList" class="pull-left tabbutton_{{cont.content_name}}" style="width:50%;">
+          <button type="button" 
+                  class="btn btn-bg btn-appselection" 
+                  ng-click="switchContent($index, cont)" 
+                  ng-class="{'active' : indexOfContentList === $index}"
+                  ng-disabled="!vm.isAppLoaded">
+                  <!--ng-class="{'active' : indexOfContentList === $index && vm.isAppLoaded}"-->
+            <i fullscreen-btn 
+               widgetid="activeContentObject.styleClass"
+               isfullscreen="activeContentObject.isfullscreen"
+               ng-if="indexOfContentList === $index" 
+               class="icon-fullscreen pull-left" title="fullscreen mode"
+               style="font-size:13px; margin-top:3px; cursor:pointer;"></i>
+            {{cont.title | uppercase}}
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!--<div class="col-lg-12" ng-repeat="cont in vm.contentsList">-->
+    <div class="col-lg-12">
+      <div id="widget-{{activeContentObject.styleClass}}" class="{{main.summaryTable.helperClass}} widget {{activeContentObject.styleClass}}" ng-show="activeContentObject.isVisible" style="margin-top:0px; border-top:none; border-radius:0 0 4px 4px;">
+        <!-- global summary -->
+        <div 
+          ng-if="activeContentObject.type == 'global_summary'"
+          path-summary-wrapper 
+          class="widget-directive"
+          filterupdatecnt="notifyFilterUpdated"
+          isapploaded="vm.isAppLoaded"
+          masterflg="masterFlg"
+          optglbl="vm.globalParams"
+          optcont="activeContentObject"
+          optpath="activeContentObject.contents"
+          isessready="vm.envStatus.isReadyForApp"
+          isviewmode="vm.isViewMode"></div>
+        <!-- cj paths contents -->
+        <div
+          ng-if="activeContentObject.type == 'cj_paths'"
+          d3-path-to-conv 
+          class="widget-directive"
+          data="activeContentObject.data" 
+          masterflg="masterFlg"
+          isapploaded="vm.isAppLoaded"
+          optglbl="vm.globalParams"
+          optcont="activeContentObject"
+          optpath="activeContentObject.contents"
+          isessready="vm.envStatus.isReadyForApp"
+          isviewmode="vm.isViewMode">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

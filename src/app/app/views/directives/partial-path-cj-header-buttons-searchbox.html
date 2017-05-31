@@ -1,0 +1,42 @@
+<!-- Filteryng Parts-->
+<div class="widget-controller helper-keyword-search" style="width:170px; margin-right:5px;">
+  <div class="input-group">
+    <!--Search by Keywords-->
+<!--
+    <div class="input-group-addon input-group-addon-contain-button helper-tp-target">
+      <div class="dropdown-container inline ng-scope pull-left" uib-dropdown btn-group>
+        <button 
+         type="button" 
+         title="Touchpoints Order"
+         class="btn btn-default btn-sm dropdown-toggle" 
+         uib-dropdown-toggle 
+         data-toggle="uib-dropdown"
+         aria-haspopup="true" 
+         ng-disabled="!isLoaded || isviewmode"
+         aria-expanded="false">
+          {{filterdepthlabel}}
+          <span class="icon-chevron-down"></span>
+         </button>
+         <ul class="dropdown-menu dropdown-default ng-scope" role="menu" uib-dropdown-menu="" style="text-align:left;">
+          <li class="dropdown-header">{{words.guide_cvpath.filtsearch}}</li>
+          <li ng-repeat="opt in searchPathDepth" ng-hide="(opt.value=='1st' && pathorder.value==1) || (opt.value=='last' && pathorder.value==0)">
+            <a href ng-click="changeFilterDepth(opt, $index)">{{opt.label}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+-->
+    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input 
+        type="text" 
+        class="form-control" 
+        style="height:32px;"
+        ng-disabled="!isLoaded || isviewmode"
+        ng-keydown="applyQuery($event)"
+        ng-blur="applyQuery($event)"
+        ng-model="optpath.filterFirstTp" 
+        placeholder="Search for" />
+        <!--class="form-control helper-keyword-search" -->
+        <!--placeholder="{{filterdepthguide}}" />-->
+  </div>
+</div>

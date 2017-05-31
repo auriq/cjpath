@@ -1,0 +1,40 @@
+
+<div class="globaloptions-options" style="width:100%;">
+  <div class="clearfix" style="width:100%;">
+    <div class="pull-left" style="width:calc(100% / 3); padding-right:5px;">
+      <p class="label">Data</p>
+      <!-- Cache Picker -->
+      <cache-picker 
+          cachelist="cachelist" 
+          optlang="lang" 
+          globalparams="globalparams"
+          isviewmode="isviewmode"
+          ischanged=amIChanged.period
+          style="width: 100%;"></cache-picker>
+    </div>
+
+    <!--<span class="divider pull-left">|</span>-->
+  
+    <!-- User Segment Group -->
+    <div class="pull-left" style="width:calc(100% / 3); padding-right:5px;">
+      <p class="label">User Segment</p>
+      <global-options-userseg class="pull-left global-userseg-wrapper"
+          globalparams="globalparams" settingobj="usersetting.usrseg" ischanged="amIChanged.userseg" isviewmode="isviewmode"
+          style="width:100%;"></global-options-userseg>
+    </div>
+
+    <!--<span class="divider pull-left">|</span>-->
+
+    <!-- CV Tag -->
+    <div class="pull-left" style="width:calc(100% / 3); padding-right:5px;">
+      <p class="label">CV</p>
+      <global-options-cv-tag class="pull-left global-cvtag-wrapper"
+          globalparams="globalparams" settingobj="usersetting.cvcond" ischanged="amIChanged.cvcond" isviewmode="isviewmode"
+          style="width:100%;"></global-options-cv-tag>
+    </div>
+    
+  </div>
+  <div class="clearfix cache-memo" style="width:100%;"><p ng-bind-html="globalparams.currentimported.memo"></p></div>
+</div>
+ 
+

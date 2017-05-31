@@ -1,0 +1,56 @@
+<!--
+<div ng-show="isLoaded && isNoData" class="loading">
+  No Data Available.
+</div>
+<div ng-show="!isNoData">
+-->
+<div>
+  <!-- Dropdown To Choose Application -->
+  <div class="clearfix" 
+    style="padding:0 20px; width:100%;"
+    ng-style="{'margin-top' : (ctype==='eachpathpopup') ? '0px' : '-50px', 'margin-bottom': (ctype==='eachpathpopup') ? '10px' : '20px'}">
+    <div class="pull-left" style="width:50%;" ng-include src="'views/directives/partial-path-summary-selectapp.html'"></div>
+<!--
+    <span class="fa fa-cog pull-right" 
+      style="font-size:22px; color:gray; padding-top:3px; cursor:pointer;"
+      ng-show="templateType!=='summ'"
+      ng-click="optpath[selectedIndex].isCogCollapse = !optpath[selectedIndex].isCogCollapse"></span>
+-->
+  </div>
+  <!-- Contents Start -->
+  <div class="tab-content tab-outside summary_tabcont_{{optpath[selectedIndex].contentType}}">
+    <div class="pathSummaryInner">
+      <div class="path-summary-content-wrapper">
+        <!-- LOADING -->
+        <div ng-show="!isLoaded" class="loading" ng-style="{'line-height': cheight + 'px', 'text-align':'center'}">
+          <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+          Loading ...
+        </div>
+        <!-- No data -->  
+        <div ng-show="isLoaded && isNoData" class="loading">
+          No Data Available.
+        </div>
+        <!--  content field  -->
+        <div id="pathSummaryContentInner" ng-show="isLoaded && !isNoData"
+          ng-style="{'height' : fullscreenFlg ? '100%' : cheight+'px'}">
+          <!--<div ng-if="templateType!=='summ'" uib-collapse="optpath[selectedIndex].isCogCollapse!==false">-->
+          <div ng-if="templateType!=='summ'">
+            <div ng-include src="'views/directives/partial-path-summary-headeroptions.html'"></div>
+          </div>
+          <div ng-if="templateType==='summ'">
+            <div ng-include src="'views/directives/partial-path-summary-summ.html'"></div>
+          </div>
+          <div ng-if="templateType==='chart'">
+            <div ng-include src="'views/directives/partial-path-summary-chart.html'"></div>
+          </div>
+          <div ng-if="templateType==='table'">
+            <div ng-include src="'views/directives/partial-path-summary-table.html'"></div>
+          </div>
+        </div>
+<!--
+-->
+      </div>
+    </div>
+  </div>
+  <!-- Contents End -->
+</div>

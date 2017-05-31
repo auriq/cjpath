@@ -1,0 +1,85 @@
+
+
+.configWrapper{
+  position : relative;
+  //text-shadow: -1px 1px 0 rgba(0,0,0,1);
+  //padding : 10px;
+  @extend .clearfix;
+  .configLeft{
+    @extend .pull-left;
+    position : relative;
+    background-color: #F4F7FA;
+    z-index:100;
+    height : 100%;
+    width : 200px;
+    //box-shadow: 0 1px 0 rgba(255,255,255,1);
+    padding : 10px;
+    .menu {
+      cursor : pointer;
+      padding : 3px;
+      &.active{
+        color : $white;
+        background-color : $icon-blue;
+        border-radius : 4px;
+        border : 1px solid $icon-blue-darker;
+      }
+    }
+    .large-menu{
+      font-size : 18px;
+      text-align: left;
+    }
+    .sub-menu{
+      font-size : 16px;
+      text-indent : 20px;
+      //text-align: right;
+    }
+  }
+  .configRight {
+    @extend .pull-left;
+    position : relative;
+    //left : 200px;
+    padding : 10px;
+    height : 100%;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    box-shadow: inset 1px 0 0 rgba(255,255,255,1);
+    @include calc(width, "100% - 200px");
+    .isloading{
+      line-height : 300px;
+      text-align : center;
+    }
+    table{
+      .col-fixed {
+        width:60px;
+        text-align : center;
+        vertical-align : middle;
+      }
+      td, th{
+        word-wrap: break-word;
+      }
+    }
+  }
+}
+
+/*
+*  Common Parts In Modal
+*/
+table.config-parts-selection-list{
+  @include calc(width, "100% - 20px");
+  margin-left:20px;
+  td{
+    min-height:40px;
+    height:auto;
+    ul{
+      margin-bottom:0px;
+    }
+    p{
+      margin:0px;
+    }
+  }
+}
+textarea.form-control[disabled]{
+  //color:#687c89 !important;
+  color:#596b77 !important;
+  background-color:#d8e0e5 !important;
+}
+

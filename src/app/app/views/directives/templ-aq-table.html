@@ -1,0 +1,68 @@
+
+<!--  content field  -->
+<!--<div ng-show="isLoaded" class="rankingTableInner">-->
+<div class="rankingTableInner" ng-style="{{wrapperstyle}}">
+  <!-- main contents -->
+  <div ng-if="data.tbody.length >0">
+    <table class="table table-fixed table-title">
+      <thead>
+        <tr ng-repeat="rowsObj in data.thead track by $index" 
+            class="ranking_header">
+          <!--<th ng-repeat="col in rowsObj.labels track by $index" -->
+          <th ng-repeat="col in header track by $index" 
+              ng-if="ctype.indexOf('rankingTable', 0) ===-1" 
+              ng-style="{width: 50/rowsObj.labels.length + '%'}">
+            {{col}}
+          </th>
+          <th ng-repeat="col in rowsObj.values track by $index" 
+              ng-style="{width: 50/rowsObj.values.length + '%'}">
+            {{col}}
+          </th>
+        </tr>
+      </thead>
+    </table>
+    <div class="table-content-wrapper" style="overflow-y:auto;" ng-style="ftablestyle">
+      <table class="table table-striped table-fixed table-content">
+        <tbody>
+          <tr ng-repeat="rowsObj in data.tbody track by $index" 
+              class="ranking_list">
+            <td ng-repeat="col in rowsObj.labels track by $index"
+                ng-style="{width: 50/rowsObj.labels.length + '%'}"
+                class="cell_label" style="word-break: break-all">
+              {{col}}
+            </td>
+            <td ng-repeat="col in rowsObj.values track by $index"
+                ng-style="{width: 50/rowsObj.values.length + '%'}"
+                class="cell_value">
+              <!--{{col | number}}-->
+              <!--<span ng-if="$.inArray(col.format, ['number','percentage']) === -1">-->
+              <span ng-if="col.format!=='number' && col.format!=='percentage' && col.format!=='decimal'">
+                {{col.value}}
+              </span>
+              <span ng-if="col.format === 'number'">
+                {{col.value | number}}
+              </span>
+              <span ng-if="col.format === 'percentage'">
+                {{col.value | number:2}}%
+              </span>
+              <span ng-if="col.format === 'decimal'">
+                {{col.value | number:2}}
+              </span>
+<!--
+-->
+<!--
+              <span ng-if="$index%2!=0">
+                {{col | number}}
+              </span>
+              <span ng-if="$index%2==0">
+                {{col | number:2}}
+              </span>
+-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

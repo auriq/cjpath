@@ -1,0 +1,76 @@
+
+.view-calc-setting{
+  .viewCalcSettingWrapper{
+      @extend .main-content;
+      height: 100%;
+      position:relative;
+     .viewCalcSettingBG{
+        width: 100%;
+        height: 100%;
+        background-color:#112849;
+        opacity: 0.7;
+        @include border-radius(0px 0px 5px 5px);
+        cursor:pointer;
+     }
+     .viewCalcSettingInner{
+       position:absolute;
+       top:5%;
+       //  transition --start
+       @include transition(left $transition-speed);
+       @include transition(width $transition-speed);
+       left:372px;
+       @include calc(width, "100% - 422px");
+       //  transition --end
+       height: 90%;
+       margin: 0 auto;
+       background-color:white;
+       opacity: 0.9;
+       @include border-radius(5px);
+       padding:2%;
+       h3{
+         margin-top:5px;
+       }
+       table{
+         table-layout:fixed;
+         text-align:left;
+         width: 100%;
+         margin-bottom:0px;
+         td,th{
+           word-wrap:break-word;
+           word-break:break-all;
+         }
+         td:first-child, th:first-child{
+           width: 150px;
+         }
+       }
+      .viewCalcSettingTableWrapper{
+         //height:60%;
+         @include calc(height, "100% - 180px");
+         width: 100%;
+         margin:0 auto;
+         overflow-y:auto;
+         .table-fixed{
+           width: 100%;
+           height: 100%;
+           td.detailTableHeader{
+             font-weight:300;
+           }
+           td.detailTableContent{
+           }
+         }
+       }
+     }
+  }
+}
+.collapsed {
+  .view-calc-setting{
+    .viewCalcSettingInner{
+      @include calc(width, "100% - 187px");
+      left: 137px;
+      
+    }
+  }
+}
+
+
+

@@ -1,0 +1,83 @@
+$base-font-size: 16px;
+$font-family-serif: 'Source Sans Pro', sans-serif;
+$font-family-monospace: 'Source Sans Pro', sans-serif;
+$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+//@font-face{
+//  font-family: 'honoka';
+//  src:url('../../fonts/font_1_honokamarugo_1.1.ttf');
+//}
+//$font-family-japanese: 'honoka';
+//$font-family-japanese: Meiryo;
+$font-family-japanese:"Hiragino Kaku Gothic", Meiryo, Osaka, "MS PGothic", sans-serif;
+$icon-font-path: "../fonts/";
+
+//Colors
+$white: #fff;
+$white2: #f4f7fa;
+$white3: #f5f7f9;
+$white-shadow: #E8EDF2;
+$white-dark: #E6EDF0;
+$gray-very-light: #DDD;
+$gray-shadow: #E6EAEF;
+$white-darker: #D5DDE0;
+$gray-icon: #cbd7dc;
+$gray-font: #96ADBC;
+$gray-darker-font: #697F8D;
+$gray-light: #ABB6C7;
+$gray-lighter: #CCD2D8;
+$gray-lighter2: #C4D1D7;
+$gray-lighter3: #A4ADC1;
+$gray: #6A7F8D;
+$gray2: #8196A4;
+$gray-border: #5B6F7C;
+$gray-dark: #424D5F;
+$gray-darker: #343F50;
+$gray-blue: #232C3A;
+$gray-blue-shadow: #1C2430;
+$black: #000;
+
+$dark-text: #515B60;
+$gray-text-shadow: #5B6F7D;
+
+$icon-green: #45B29D;
+$icon-green-border: #399F8B;
+$icon-green-hover: #258572;
+$icon-red: #F7565A;
+
+
+//$blue-font-strong: #3C71CA;
+$blue-font-strong: #479fd9;
+$icon-blue : #429edb;
+$icon-blue-darker : #337aa8;
+$orange-font : #FF6E3D;
+
+$widget-border-light: #E1E9ED;
+$widget-border: #E7EDEF;
+$widget-shadow-border: #F7FAFB;
+$widget-control-gray-light: #AEC0C9;
+$legend-dot: #C3CAD9;
+$table-gray: #f8f9fb;
+$table-hover: #424d60;
+$table-border: #e9edf3;
+
+$progress-hover: #262f3f;
+$popover-hover-bg: #545e71;
+$popover-hover-border: #343f51;
+$fullsreen-topbar-bg: #1b2129;
+$fullsreen-close-btn: #bbbdbf;
+
+//responsive
+$btn-font-weight: 400 !default;
+$headings-font-weight: 600 !default;
+
+
+$transition-speed: 0.3s;
+
+//Buttons
+$btn-font-weight: 400;
+$btn-default-color: $gray;
+$btn-default-bg: $white;
+$btn-default-border: $white-darker;
+
+$graph-icon-bg: #3C71CA #45b29d #f7565a;
+$graph-icon-border: #3162B5 #329b87 #d6373b;

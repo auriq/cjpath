@@ -1,0 +1,48 @@
+
+<div class="dropdown-container" uib-dropdown btn-group ng-show="!isLoading" style="width:100%; margin-left:0px;">
+  <span id="ruler-{{btn_id}}" style="visibility:hidden; font-size:16px;"></span>
+  <button type="button" class="btn btn-default btn-globalfilter btn-sm dropdown-toggle" 
+          id="{{btn_id}}"
+          uib-dropdown-toggle data-toggle="uib-dropdown"
+          ng-class="{isChanged : ischanged}"
+          ng-disabled="isviewmode || !selectedlbl"
+          style="width:100%; overflow:hidden; margin-right:0px;"
+          ng-attr-title="{{selectedlbl ? selectedlbl : 'Go to \'Filter Config\' and add your conditions.'}}"
+          aria-haspopup="true" aria-expanded="false">
+    <span class="icon-chevron-down" style="margin-left:0px;"></span>
+    <!--<span class="dropdown-icon" ng-class="icon"></span>-->
+    <!--{{selectedlbl}}-->
+    <p class="cache-picker-selectlabel" style="text-align:center; text-indent:0px;">{{selectedlbl ? (selectedlbl | ellipsedString:btn_id) : 'NON'}}</p>
+  </button>
+  <!-- Single Layer Dropdown -->
+  <ul class="dropdown-menu dropdown-default dropdown-globalfilter ng-scope" role="menu" uib-dropdown-menu="" ng-show="layerpattern === 'single' && list.length>0">
+    <!--<li ng-repeat="item in list" ng-class="{'user-select' : item.condName === selectedlbl}">-->
+    <li ng-repeat="item in list">
+      <a href="javascript: void(0);" ng-click="changeItemInList(item, $event)">
+        <i ng-if="item.condActiveFlg==1" class="fa fa-check-circle fa-fw" title="imported"></i>
+        <i ng-if="item.condActiveFlg!=1" class="fa fa-fw"></i>
+        {{item.condName}}
+      </a>
+    </li>
+  </ul>
+  <!-- Double Layer Dropdown -->
+  <ul class="dropdown-menu dropdown-default dropdown-globalfilter ng-scope" role="menu" uib-dropdown-menu="" ng-show="layerpattern === 'double' && list.length>0">
+    <li ng-repeat="item in list" ng-mouseover="item.isShow = true" ng-mouseout="item.isShow = false">
+      <a>{{item.setName}}</a>
+      <i class="list-2ndlayer-icon fa fa-caret-right"></i>
+      <ul ng-show="item.isShow" class="dropdown-2ndlayer ng-scope" role="menu">
+        <!--<li ng-repeat="secondItem in item.list" class="clearfix" ng-class="{'user-select' : secondItem.condName === selectedlbl}">-->
+        <li ng-repeat="secondItem in item.list" class="clearfix">
+          <a href="javascript: void(0);" ng-click="changeItemInList(item, secondItem , $event)">
+            <i ng-if="secondItem.condActiveFlg==1" class="fa fa-check-circle fa-fw" title="imported"></i>
+            <i ng-if="secondItem.condActiveFlg!=1" class="fa fa-fw"></i>
+            {{secondItem.condName}}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+

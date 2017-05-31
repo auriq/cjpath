@@ -1,0 +1,59 @@
+.weekly_picker{
+  width:auto;
+  margin-right:10px !important;
+  .datepicker-container{
+    width:100% !important;
+    .datepicker-btn{
+       width:100% !important;
+     }
+   }
+}
+.main-content{
+  .content{
+    .content-header{
+      .range-datepicker-block{
+        .datepicker-container{
+          width:100%;
+          .datepicker-btn{
+            width:100%;
+          }
+        }
+      }
+    }
+  }
+}
+.ui-datepicker{
+  .ui-datepicker-calendar{
+    tbody{
+      tr{
+        td.ui-state-active-weekly{
+          padding:0;
+          &.ui-state-active-weekly{
+            border-radius:0;
+            a{
+              width:100%;
+              border-radius:0;
+              margin:0;
+              padding:0;
+              border:0;
+            }
+          }
+          &.ui-state-active-weekly-0{
+            a{
+              @include border-radius(10px 0 0 10px);
+            }
+          }
+          &.ui-state-active-weekly-6{
+            a{
+              @include border-radius(0 10px 10px 0);
+            }
+          }
+          &.ui-state-active-weekly & td{
+            padding:0;
+          }
+        }
+      }
+    }
+  }
+}
+  

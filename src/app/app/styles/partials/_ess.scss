@@ -1,0 +1,219 @@
+
+.instanceCreating{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  width: 100%;
+  height: 100%;
+  .instanceCreatingBackground{
+    position:absolute;
+    top:0;
+    left:0;
+    @include opacity(0.4);
+    @include transition(opacity, visibility $transition-speed);
+    background-color:$white;
+    width: 100%;
+    height: 100%;
+  }
+  .instanceCreatingInner{
+    background-color:$white;
+    @include opacity(1);
+    position:relative;
+    @include calc(top, "(100% - 100px)/2");
+    @include calc(left, "(100% - 87px)/4 + 87px");
+    text-align:center;
+    @include calc(width, "(100% - 87px)/2");
+    height: 100px;
+    padding-top:25px;
+    border: 1px solid $white-darker;
+    border-radius: 4px;
+  }
+}
+
+.instanceSetupPanel{
+  @extend .instanceCreating;
+  .instanceSetupPanelBackground{
+    @extend .instanceCreatingBackground;
+    background-color:grey;
+  }
+  .instanceSetupPanelInner{
+    $sidemenu-width : '87px';
+    @extend .instanceCreatingInner;
+    background-color:$white;
+    @include opacity(1);
+    position:absolute;
+    @include calc(top, "(100% - 300px)/2");
+    @include calc(left, "(100% - $sidemenu-width)/4 + $sidemenu-width/2");
+    //@include calc(left, "(100% - 87px)/4");
+    text-align:center;
+    @include calc(width, "(100% - $sidemenu-width)/2");
+    height : 100%;
+    min-width: 530px;
+    min-height: 300px;
+    max-height: 350px;
+    padding-top:25px;
+    border: 1px solid $white-darker;
+    border-radius: 4px;
+    line-height:250px;
+    p.mainmessage{
+      padding-top:80px;
+    }
+    h2{
+      text-align: center;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      margin-top: 20px;
+    }
+    p.whyinstance{
+      text-align : left;
+      margin-bottom : 10px;
+      padding : 0 10px;
+    }
+    .workdirwarning{
+      margin-top:100px;
+      margin-bottom:50px;
+      font-size:16px;
+      color: $gray;
+    }
+    .localmasterwarningWrapper{
+      margin-bottom: 10px;
+      .localmasterwarning{
+        font-size:12px;
+        color:$orange-font;
+        button {
+          font-size: 12px;
+        }
+      }
+    }
+    li{
+      text-align:center;
+      width:100%;
+      clear:both;
+      list-style-type: none;
+      margin-bottom:15px;
+      p{
+        margin: 0 10px 0 0;
+      }
+    }
+    .icon-chevron-down{
+      font-size:7px;
+    }
+    .progress{
+      margin: 0 20px;
+    }
+  }
+  .showEssSetupPanelButtom{
+    position:relative;
+    top : 15px;
+  }
+}
+button{
+  font-size: 20px;
+}
+
+
+.instanceControlPanel{
+padding-top:18px;
+  .elapse-time-counter{
+    font-size:14px;
+    margin: 0px 10px;
+    margin-top: -4px;
+  }
+}
+
+
+.udbd-status-wrapper{
+  font-size:12px;
+  padding-right:10px;
+  margin-top:7px;
+  color: $gray-lighter3;
+  .udbdstatus{
+    font-size:12px;
+    color: #d12d05;
+  }
+  .GREEN{
+    @extend .udbdstatus;
+    color: $icon-green;
+    opacity:0.6;
+  }
+  .YELLOW{
+    @extend .udbdstatus;
+    color: #ffa500;
+  }
+  .ORANGE{
+    @extend .udbdstatus;
+    color: #ff4500;
+  }
+  .ERROR{
+    @extend .udbdstatus;
+    color: #d12d05;
+  }
+}
+
+// icons
+.icon-nav-logout{
+  font-size:20px;
+  color: $gray2;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+
+.stickyPanelWrapper{
+  position:fixed;
+  top:0px;
+  left:0px;
+  z-index: 10000;
+  .stickyPanelBackground{
+    position:absolute;
+    left:80px;
+    bottom:0px;
+    height:100px;
+    //width:100%;
+    @include calc(width, "100% - 80px");
+    @extend .instanceCreatingBackground;
+    background-color:grey;
+  }
+  .stickyPanelInner{
+    color: $gray;
+    @include calc(width, "100% - 100px");
+    height:80px;
+    background-color: $white; 
+    border: 1px solid $white-darker;
+    border-radius: 4px;
+    @include opacity(1);
+    position:absolute;
+    bottom:10px;
+    left:90px;
+    text-align:center;
+    line-height: 80px;
+    button{
+      margin-left:10px;
+    }
+  }
+}
+
+.animate-slidein-bg{
+  animation-name: slideinfrombottombg;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+@keyframes slideinfrombottombg{
+  0%   { bottom:-100px;}
+  100% { bottom:0;}
+}
+
+.animate-slidein{
+  animation-name: slideinfrombottom;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+@keyframes slideinfrombottom{
+  0%   { bottom:-90px;}
+  100% { bottom:10;}
+}
+
+

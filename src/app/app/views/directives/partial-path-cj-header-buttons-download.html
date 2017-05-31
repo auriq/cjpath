@@ -1,0 +1,12 @@
+<button 
+ type="button" 
+ class="btn btn-default btn-csv dropdown-toggle path_dl_csv" 
+ uib-dropdown-toggle 
+ data-toggle="uib-dropdown"
+ aria-haspopup="true" 
+ aria-expanded="false"
+ ng-disabled="!(tempfilterbuildpathobj.label==filterbuildpathobj.label && temptillcv.label==tillcv.label && temppathorder.label==pathorder.label) || isviewmode || !isLoaded"
+ title="Download Data"
+ ng-click="csvall()">
+  <i  class="glyphicon glyphicon-download-alt"></i>
+</button>

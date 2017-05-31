@@ -1,0 +1,30 @@
+<!--  paging options  -->
+<div class="pagerWrapper clearfix">
+  <div class="pageGotoWrapper pull-left form-inline">
+    <label class="col-form-label">Go to</label>
+    <input 
+      id="pagenumber-id"
+      type="text" 
+      class="form-control"
+      ng-disabled="!isLoaded || isviewmode"
+      ng-init="pagenum = 1"
+      ng-model="pagenum" 
+      ng-blur="pageChangeByNum($event, pagenum)"
+      ng-keydown="pageChangeByNum($event, pagenum)" 
+      title="{{words.guide_cvpath.paginginput}}" />
+    <label class="col-form-label small-font">
+      <!--{{optpath.options.paging.status.from||0 | number}}-{{optpath.options.paging.status.to||0 | number}} of {{pageProp.pageMax | number}} -->
+       of {{pageProp.pageMax | number}} 
+    </label>
+  </div>
+  <div class="pageArrowButtonsWrapper pull-left">
+    <button type="button" class="btn btn-default pull-left"
+      title="{{words.pageprev}}{{pageProp.itemRng}}"
+      ng-disabled="!isLoaded || isviewmode || optpath.options.paging.status.pageNum==pageProp.pageMin"
+      ng-click="pageChanged('p')"><i class="fa fa-angle-left"></i></button>
+    <button type="button" class="btn btn-default pull-left"
+      title="{{words.pagenext}}{{pageProp.itemRng}}"
+      ng-disabled="!isLoaded || isviewmode || optpath.options.paging.status.pageNum==pageProp.pageMax"
+      ng-click="pageChanged('n')"><i class="fa fa-angle-right"></i></button>
+  </div>
+</div>

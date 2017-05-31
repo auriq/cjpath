@@ -1,0 +1,40 @@
+<!-- Options to configure touchpoint (mainly "how to cut" -->
+<div id="cjpathTouchpointConfig" class="filter-group helper-tp-forward-reverse">
+  <div class="dropdown-container inline ng-scope pull-left" uib-dropdown btn-group>
+    <button 
+     id="dropdown_cjpath_detailconfig_bttn"
+     type="button" 
+     title="Path Configuration"
+style="min-width:170px;"
+     class="btn btn-default btn-sm dropdown-toggle" 
+     uib-dropdown-toggle 
+     data-toggle="uib-dropdown"
+     aria-haspopup="true" 
+     ng-disabled="isviewmode"
+     ng-class="{isChanged : (pathorder.label===undefined || temppathorder.label!=pathorder.label || tpdepth!=tpdepth_temp || temptillcv.label!=tillcv.label)}"
+     aria-expanded="false">
+      <span ng-if="temppathorder.value === 0">
+        {{temppathorder.label}} {{tpdepth}} 
+        <span ng-if="temptillcv.value === 1"> / {{temptillcv.label}}</span>
+      </span>
+      <span ng-if="temppathorder.value === 1">{{temppathorder.label}} {{tpdepth}} before 1st CV</span>
+      <span class="icon-chevron-down"></span>
+     </button>
+     <div class="configPanel" role="menu" uib-dropdown-menu="">
+       <div ng-click="$event.stopPropagation()">
+         <div class="clearfix configButtonsWrapper">
+           <div class="pull-left">
+             <select class="form-control" ng-model="temppathorder" ng-options="opt as (opt.label) for opt in pathorder_options" ng-change="changePathBuildType(temppathorder)"></select>
+           </div>
+           <div class="form-group pull-left">
+             <select class="form-control" ng-model="tpdepth_temp" ng-options="opt as (opt) for opt in touchPointDepthOptions" ng-change="changeTouchPointDepth(tpdepth_temp)"></select>
+           </div>
+           <span class="pull-left"> From {{temppathorder.value===0 ? 'Entry' : '1st CV'}}</span>
+           <div class="pull-left" ng-if="temppathorder.value===0">
+             <select class="form-control" ng-model="temptillcv" ng-options="opt as opt.label for opt in tillCVList" ng-change="changeListSelection(temptillcv)"></select>
+           </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</div>

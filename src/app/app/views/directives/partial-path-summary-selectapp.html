@@ -1,0 +1,24 @@
+<!-- Dropdown Start -->
+<div class="dropdown-container" uib-dropdown btn-group ng-show="!isLoading">
+  <button type="button" class="btn btn-default btn-globalfilter btn-sm dropdown-toggle"
+          uib-dropdown-toggle data-toggle="uib-dropdown"
+          ng-disabled="isviewmode"
+          style="width:100%; overflow:hidden; margin-right:0px; padding-left:0px; height:34px;"
+          title="Select Contents"
+          aria-haspopup="true" aria-expanded="false">
+    <span class="icon-chevron-down pull-right" style="margin-left:0px; font-size:7px;"></span>
+    <span style="font-size:16px; text-align:left;">{{optpath[selectedIndex].title}}</span>
+  </button>
+  <ul class="dropdown-menu dropdown-default dropdown-globalfilter ng-scope" role="menu" uib-dropdown-menu="">
+    <li><h4 style="padding:0px 22px; color:#6A7F8D;">Select Analytics</h4></li>
+    <li ng-repeat="cont in optpath" class="summ-appselection-{{cont.contentType}}"> <!-- ng-if="$index !== selectedIndex">-->
+      <a href="javascript: void(0);" ng-click="tabChange($index, false)">
+        <i ng-if="$index == selectedIndex" class="fa fa-check-circle fa-fw"></i>
+        <i ng-if="$index != selectedIndex" class="fa fa-fw"></i>
+        {{cont.title}}
+      </a>
+    </li>
+  </ul>
+</div>
+<!-- Dropdown End -->
+

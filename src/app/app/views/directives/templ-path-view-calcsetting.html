@@ -1,0 +1,53 @@
+
+<div class="instanceCreating view-calc-setting" ng-hide="iscollapsed"
+     ng-class="{ false: 'collapsed', true: 'opened' }[issidebaropened]">
+  <div class="viewCalcSettingWrapper">
+    <div class="viewCalcSettingBG" ng-click="close()"></div>
+    <div class="viewCalcSettingInner">
+      <div class="clearfix">
+        <h3 class="pull-left">
+          <i class="glyphicon glyphicon-signal"></i>
+          {{words.view_panel_title}}
+        </h3>
+        <p class="pull-right" style="cursor:pointer;" ng-click="close()">
+          <i class="glyphicon glyphicon-remove-circle"></i>
+          {{words.close}}
+        </p>
+      </div>
+      <hr class="">
+      <table class="table table-striped">
+        <thead>
+          <tr ng-repeat="row in thead">
+            <th 
+              ng-repeat="col in row track by $index" 
+              class="detailTableHeader">
+              <!--ng-style="{width: 100 / row.length + '%'}">-->
+              {{col}}
+            </th>
+          </tr>
+          </tr>
+        </thead>
+      </table>
+      <div ng-hide="isLoaded" class="loading">
+        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        Loading ...
+      </div>
+      <div ng-show="isLoaded" class="viewCalcSettingTableWrapper">
+        <table class="table table-striped table-fixed">
+          <tbody>
+            <tr ng-repeat="row in tbody">
+              <td 
+                ng-repeat="col in row track by $index" 
+                class="detailTableContent">
+                <!--ng-style="{width: 100 / row.length + '%'}">-->
+                {{col}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+

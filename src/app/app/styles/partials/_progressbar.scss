@@ -1,0 +1,87 @@
+.progressbar-wrapper {
+  @include inline-block;
+  background-color: $white-darker;
+  border: 1px solid $white-darker;
+
+  height: 6px;
+  position: relative;
+  width: 80%;
+  max-width: 118px;
+  @include border-radius(2px);
+  .progress {
+    background-color: transparent;
+    @include box-shadow(none);
+    height: 4px;
+    left: 50%;
+    margin-bottom: 0;
+    position: relative;
+    width: 50%;
+    overflow: visible;
+    .progress-bar {
+      background-color: $icon-green;
+      @include border-radius(4px);
+      @include box-shadow(none);
+      position: relative;
+    }
+    &.negative {
+      @include transform(scaleX(-1));
+      left: 0;
+      .progress-bar {
+        background-color: $icon-red;
+      }
+    }
+    &.bar_red {
+      .progress-bar {
+        background-color: $icon-red;
+      }
+    }
+    &.bar_green {
+      .progress-bar {
+        background-color: $icon-green;
+      }
+    }
+  }
+}
+
+.progressbar-chart-wrapper {
+  display: table;
+  position: relative;
+  top: 2px;
+  width: 100%;
+  .progressbar-chart {
+    display: table-row;
+    .progressbar-chart-value {
+      color: $gray-lighter3;
+      // Style for "0.00"
+      display: table-cell;
+      font-size: em(14px);
+      font-weight: 400;
+      line-height: 15px;
+      padding: 0 10px;
+      vertical-align: middle;
+    }
+    .progress {
+      display: table-cell;
+      font-size: 1px;
+      height: 15px;
+      position: relative;
+      vertical-align: middle;
+      width: 90%;
+      .progress-bar {
+        font-size: 1px;
+        line-height: 15px;
+        //      left: 0;
+        //      position: absolute;
+        //      top: 0;
+        $index: length($graph-icon-bg);
+        @while ($index > 0 ) {
+          &.blue#{$index} {
+            background-color: nth($graph-icon-bg, $index);
+            border: none;
+          }
+          $index: $index - 1;
+        }
+      }
+    }
+  }
+}

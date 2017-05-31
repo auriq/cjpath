@@ -1,0 +1,180 @@
+
+.filter-config-content{
+  input {
+    border:1px solid $gray-very-light;
+    @include border-radius(4px);
+  }
+  position: relative;
+  .filter-wrapper{
+    height:544px;
+    width: 100%;
+    .cond{
+      width: 100%;
+      height: 100%;
+      background-color:$white;
+      @include border-radius(5px);
+      padding: 5px;
+      border: 1px solid $gray-very-light;
+      @include border-radius(5px);
+      @include box-shadow(0 1.5px 0 $gray-shadow);
+      .cond-bottom{
+        height: 40px;
+        text-align:center;
+        padding-top:5px;
+        margin-top: -40px;
+      }
+      .ng-isolate-scope{
+        @include calc(height, "(100% - 50px)");
+        .loading{
+          width: 100%;
+          text-align: center;
+          height: 50%;
+          position:absolute;
+          bottom:0;
+        }
+        .tab-content{
+          height: 100%;
+          .tab-pane{
+            @include calc(height, "(100% - 47px)");
+            .ng-isolate-scope{
+              height: 100%;
+            }
+            .table-fixed{
+              @include calc(height, "(100% - 42px)");
+              overflow-y:auto;
+              overflow-x:hidden;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+table.table{
+  margin-bottom:0px;
+  table-layout:fixed;
+  tr.addListTemplate, tr.addListPopupTemplate{
+    display:none;
+  }
+  th{
+    text-align:center;
+  }
+  td{
+    text-align:left;
+    vertical-align:middle;
+    height: 50px;
+  }
+  .td_delete, .td_add_cancel{
+    text-align:center;
+    width:100px;
+  }
+  .td_actflg,.td_setflg{
+    text-align:center;
+    width:100px;
+  }
+  .td_cname, .td_cvalue{
+    vertical-align:middle;
+  }
+  .td_cname, .td_actflg, .td_setflg {
+    text-align:center;
+  }
+  div.editFieldWrapper{
+    width: 100%;
+    p{
+      width: 100%;
+      input {
+        border:1px solid $gray-very-light;
+        @include border-radius(4px);
+      }
+    }
+    div.editFieldEditMode, div.editFieldViewMode{
+      width: 100%;
+    }
+    div.editFieldViewMode{
+      p{
+        //@include calc(width, "(100% - 45px)");
+        width : 100%;
+        word-break:break-all;
+      }
+    }
+    div.editFieldEditMode{
+      p{
+        //@include calc(width, "(100% - 81px)");
+        width : 100%;
+        input{
+          width: 100%;
+        }
+      }
+      //input{
+      //}
+    }
+  }
+  input {
+    border:1px solid $gray-very-light;
+    @include border-radius(4px);
+    //@include calc(width, "(100% - 81px)");
+    width : 100%;
+  }
+  .addRowTemplate{
+    input{
+      width: 100%;
+    }
+  }
+  select{
+    width: 100%;
+  }
+  button.btn-status{
+    color:$white;
+    width:74px;
+  }
+  button.status_act{
+    font-weight: 400;
+    // red
+    //background-color: $icon-red;
+    // green
+    background-color: $icon-green;
+    border:1px solid #389382;
+  }
+  button.status_inact{
+    color:$gray-very-light;
+    border: 1px solid #357ebd;
+    background-color:#428bca;
+  }
+}
+table.calc-setting-table-popup{
+  table-layout:auto !important;
+}
+
+.popupPanelHeaderRight{
+  @include calc(width, "(100% - 100px)");
+  input {
+    border:1px solid $gray-very-light;
+    @include border-radius(4px);
+  }
+}
+
+// file management
+.file-manage-wrapper{
+  .upload-wrapper{
+  }
+  .file-list{
+    table-layout:fixed;
+    width : 100%;
+    margin-top:5px;
+    td {
+      padding: 5px;
+    }
+    td.td_subtitle{
+      @include calc(width, "(100% - 310px)");
+    }
+  }
+}
+
+
+.cond-bottom{
+  height: 40px;
+  text-align:center;
+  padding-top:5px;
+  margin-top: -40px;
+}

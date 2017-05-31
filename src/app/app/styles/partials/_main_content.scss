@@ -1,0 +1,220 @@
+.main-content {
+  padding-left: 322px;
+  @include transition(padding-left $transition-speed);
+  .main-content-inner {
+    overflow:visible;
+    position:relative;
+//    min-width: 1200px !important;
+  }
+  #header {
+    // Style for Dropshadow
+    background-color: $white;
+    //border-bottom: 2px solid $white-dark;
+    border-bottom: 1px solid $white-dark;
+    height: 72px;
+    padding: 18px 18px;
+    position: relative;
+    width: 100%;
+    overflow : visible;
+/*
+    &:before {
+      background-color: $white-darker;
+      bottom: 0;
+      content: '';
+      height: 1px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+*/
+    .logo-icon {
+      //background : url('../images/logo-essentia.png') no-repeat;
+      @include background-image(image-url('../images/logo-essentia.png'));
+      background-repeat:no-repeat;
+      height: 30px;
+      width: 30px;
+      margin-right:7px;
+    }
+    .logo {
+      margin-top:-6px;
+      @include inline-block;
+      @include background-image-2x('logo-cjpath', 141px, 50px);
+      height: 50px;
+      width: 141px;
+    }
+
+    .header-controls {
+      float: right;
+      margin-top: 4px;
+      > a {
+        color: $gray2;
+        font-size: em(20px);
+        margin-left: 16px;
+        margin-right: 18px;
+        &:hover {
+          text-decoration: none;
+        }
+        &:first-child {
+          font-size: em(22px);
+        }
+      }
+    }
+  }
+
+  .content {
+    background-color: $white2;
+    height: 100%;
+    padding: 35px 45px 36px 39px;
+    .content-header {
+      // Style for Container
+//      background-color: #F4F7FA;
+      background-color : white;
+//      border: 1px solid $white-darker;
+      border: 1px solid white;
+      //height: 57px;
+      padding: 11px 14px 44px;
+      width: 100%;
+//      @include border-radius(4px);
+//      @include box-shadow(0 2px 0 #E8EDF3, inset 0 2px 0 #FFF);
+      .attributions-topbar-text {
+        // Base style
+        color: $gray;
+        font-size: em(16px);
+        font-weight: 400;
+        line-height: 34px;
+        b {
+          font-weight: 600;
+
+        }
+        .divider {
+          color: $gray;
+          margin: 0 10px;
+          @include opacity(0.3);
+        }
+      }
+
+      .slide-checkbox {
+        margin-top: 1px;
+        @include inline-block;
+        @include slider-checkbox(184px, $white, $gray, $gray-lighter2);
+        >label {
+          border: 1px solid $gray-lighter2;
+          @include box-shadow(none);
+          > .dot {
+            top: -1px;
+          }
+          .value-text {
+            line-height: 28px;
+          }
+        }
+      }
+      .btn {
+        @include inline-block;
+      }
+      .edit-widgets {
+        font-size: em(16px);
+        font-weight: 400;
+        margin: -3px 0 0 16px;
+        padding-left: 18px;
+        padding-right: 18px;
+        text-align: left;
+//        width: 143px;
+        width: auto;
+        /*&.editing {
+          padding-left: 16px;
+          padding-right: 10px;
+//          padding-right: 20px;
+        }*/
+
+        &:before {
+          left: -4px;
+          position: relative;
+          top: 1px;
+        }
+      }
+      .range-datepicker-block {
+        margin-right: -8px;
+        .datepicker-container {
+          margin: 0 8px;
+          @include inline-block;
+          position: relative;
+          width: 131px;
+          .datepicker-control {
+            display: block;
+            margin-left: -50%;
+            margin-top: 2px;
+            position: absolute;
+            visibility: hidden;
+            width: 100%;
+          }
+          .datepicker-btn {
+            @include box-shadow(0 1px 0 $gray-shadow);
+            font-size: em(16px);
+            height: 34px;
+            line-height: 1.2;
+            width: 134px;
+            .icon-calendar {
+              color: $gray-icon;
+              float: left;
+              &:before {
+                font-size: em(14px);
+                left: -1px;
+                position: relative;
+                top: 1px;
+              }
+            }
+            .date {
+              font-weight: 400;
+              margin: 0 5px;
+            }
+            //.icon-chevron-down {
+            .icon-calendar {
+              display: block;
+              float: right;
+              font-size: em(7px);
+              height: 19px;
+              line-height: 19px;
+              &:before {
+                position: relative;
+                top: 2px;
+              }
+            }
+            &:hover, &:active, &:focus {
+              .icon-calendar {
+                color: $icon-green-hover;
+              }
+            }
+          }
+        }
+      }
+
+      .dropdown-container {
+        .btn {
+          @include box-shadow(0 1px 0 $gray-shadow);
+          font-size: em(16px);
+          height: 34px;
+          line-height: 1.2;
+          min-width: 144px;
+          .icon-chevron-down {
+            display: block;
+            float: right;
+            font-size: em(7px);
+            height: 19px;
+            line-height: 19px;
+            margin-left: 8px;
+            &:before {
+              position: relative;
+              top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.collapsed {
+  .main-content {
+    padding-left: 87px;
+  }
+}

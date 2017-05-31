@@ -1,0 +1,30 @@
+id,type,selector,posX,posY,isActivate,title,text,title_jap,text_jap
+1,paths,global-options-cv-tag,left,bottom,1,Conversion Lists,Select Conversion,CV(コンバージョン)選択,解析対象のコンバージョンを選択して下さい。任意のインベントをコンバージョンとして登録することができます（管理者機能）
+2,paths,.global-userseggroup-wrapper,left,bottom,1,User Segment',Select a user segment group and a segment,セグメント選択',設定してあるユーザーセグメントを選択することで、全ての集計結果を特定のユーザーセグメントに絞り込むことができます。複数のセグメント設定を一つのグループにまとめることで、セグメント毎の集計結果の比較をやりやすくできます。
+3,paths,cache-picker,left,bottom,0,1,cache list',"Users can choose which data set to see from the cache list. Not updated until ""Apply"" is clicked.'",集計期間',集計したい期間を設定して下さい。遡りとは集計対象のユーザーのログを指定日数分遡って集計対象データに追加します。
+4,paths,ess-loaded-data-view,left,bottom,1,Overview Count',It is telling how many log is loaded to essentia.',サマリー',読み込んだログの総数とユニークユーザー数です。それぞれをコンバージョンしたユーザーと指定対象のセグメントのユーザー別の数も表示します。さらに広告ログとサイトログ別に集計結果を表示します。
+5,paths,.helper-info-viewer,left,bottom,1,filtering summary',This is the summary which filtering option is currenetly applied.',設定条件の一覧,現在適用されている設定条件を一覧でご覧になれます。
+6,paths,.summary_summ,left,bottom,1,'summary','CV Count',概要,'初回接触からコンバージョンまでの経路に関する概要集計結果です。概要、上段ではCVカウント、及び、CVするまでのパスの長さの概要が表示されております。下段では、それぞれのCVユーザーのパス内にインタラクションタイプが含まれる割合をパイチャートで確認できます。
+7,paths,.summary_logCountTrend,left,bottom,1,Trends',"Choose bins from by minute / dailyhourly / daily / weekly / monthly / hourly /by day",トレンド,'トラフィックの履歴です。分、時間、日次、週次、曜日、時間帯、などの多様な集計軸でトレンドをみることができます。"毎分/毎時/日毎/週毎/月毎/時間帯別/曜日別"からご覧頂けます。'
+8,paths,.summary_logCountTrendMultiUser,left,bottom,1,Comparison Trends',You can compare trends among user groups.',比較トレンド,トレンドを指定グループ内の複数のセグメント別に比較することが出来ます。
+9,paths,.summary_distFreq,left,bottom,1,Distribution Charts',Choose bin type',頻度分布,'初回接触から初回CVまでの間の日数・イベント・インプ・クリック"などの様々な頻度分布が表示されます。UU数および累積率でご覧頂けます。'
+10,paths,.summary_distFreqPV,left,bottom,1,PV Distribution to CV',PV distribution to CV',CV数とCVR,CVするまでのイベント数別にCVしたユーザー数の分布を表示します。コンバージョンしていないユーザー数とCVR（コンバージョン率）も重ねて表示します。
+11,paths,.summary_pieBrowsers,left,bottom,1,device detail',device detail',デバイス内訳,利用されているデバイスの内訳を表示します。
+12,paths,.summary_beforeAfterTable,left,bottom,1,CV before/after comparison',showing before/after CV.',CV前後比較','イベント数をCVの前後で比較してご覧になれます。"CV前率/CV後率"ではイベント総数に対する割合を表示しております。'
+13,paths,.summary_detailTableEventCount,left,bottom,1,Ranking',"PV/UU list which is drilldowned by ""browser/page/ip/skey"". You could select the log type from ""Site"" log or ""Ad"" log.'",ランキング',広告ログとサイトログ別に、キャンペーンやドメインなどの色々な集計キー毎にイベント数とUU数のランキングを表示します。トップ20以降はCSVダウンロード下さい。
+14,paths,.summary_detailTableEntry,left,bottom,1,Entry',PV/UU list of entry log which is drilldowned by various combination.',流入解析',サイトへの流入経路の集計結果です（広告ログは含めません）。UU数の多い順にランキングを表示します。各流入経路毎にさらに詳細なドリルダウンもできます。20位以降はCSVダウンロードをご利用下さい。
+15,paths,.summary_detailTableRegionMap,left,bottom,1,By Region',PV/UU list which is drilldowned by region code.',地域',ユーザーのアクセス元都道府県の集計結果です。
+16,paths,.summary_attrScore,left,bottom,1,Attribution Score,'Choose models to evaluate.',アトリビューションスコア',10種類の異なるモデルでのアトリビューションスコアを表示します。csvダウンロードで全件ご利用頂けます。またコストデータをアップロードすることでCPAとしてもご覧になれます。アップロードするコストデータはcsv形式で、1カラム目にキャンペーン名などのラベルを2カラム目に費用数値をご記入下さい。
+17,paths,.summary_attrScoreFMD,left,bottom,1,FML table,'F: entry',F-M-Lテーブル,初回接触でのイベント数(First)、CV直前のイベント数(Last)、それ以外でのイベント数(Middle)としてそれぞれカウントしております。
+18,paths,.pathCJPaths,left,bottom,1,path to cv',This contents shows the list of the mostly frequent paths as descendent order.',CVパス,ユーザーの行動パターンを可視化します。着目したいイベントや複数のイベントをグルーピングする設定を複数登録しておき、それらを選択することで様々な視点で行動パターンを可視化できます。全てのユーザーの全てのパスを集計しCVしたUU数の多いパターン順に10件ずつ表示されます。
+19,paths,.helper-tp-forward-reverse,left,bottom,1,'path order','If you choose "reverse"',パスの視点と方向,'Forward: 初回接触から時間順に行動パターンを表示します。全てのユーザーの全てのパスパターンを表示します。Backword:初回CVを起点にし時間を逆方向に指定の深さまで集計し発生時間順に表示します。この場合CVしたユーザーだけが対象になります。初回接触から順にご覧になるか、初回CVまでご覧になるかをご選択下さい。'
+20,paths,.helper-tp-stop-cv,left,bottom,1,till CV/end',"Do you want to see till CV? or you want to see as long as the path length"" is specified.'""",CV直前まで/最後まで',CV直前まで、またはCVも含みパスパターンの終わり（指定の深さ）までかを選択します。
+21,paths,.helper-tp-def,left,bottom,1,path spec',We can set a very flexible touch point definition as you want to see.',パス構成条件',現在設定されているパスの構成条件（着目したい行動イベントやそれぞれの表現など）の詳細を表示します。パスの構成条件の追加や編集には管理者権限が必要です。
+22,paths,.helper-path-len,left,bottom,1,path length',How many touch point in one path at max do you want to see?',構成するパスの長さ',パスの長さを１～20までで指定できます。
+23,paths,.helper-tp-target,left,bottom,1,"1st/all, last/all'","Do you want to query by keywords only to 1st/last"" touch pints? Or to ""all""?'""",絞込みフィルタ,キーワードを含むパスパターンだけを表示するためのフィルターです
+24,paths,.helper-keyword-search,left,bottom,1,keywords',Input the keywords you want to query.',キーワードボックス','指定キーワードを含むパスだけに絞り込むことができます。スペース区切りで複数ワードを入れるとor検索が出来ます。場所の条件("全範囲/先頭のみ/最後のみ")も選択して下さい。'
+25,paths,.path_dist_options,left,bottom,1,distributions bin',Select bin from event/days/imp',詳細分布,'各パスパターンを持つユーザーセグメント毎に初回接触からCVまでの"イベント/日数/インプ/クリック"数の最大最小平均値を表示します。'
+26,paths,.path_dl_csv,left,bottom,1,path download',Download all path results.',ダウンロード',全てのパスパターンをダウンロードできます。
+27,paths,.path_detail_open_sample,left,bottom,1,sample viewer',This sample viewer is a one user log who is randomly picked up from people who took the path.',サンプル,該当のパスのユーザーのうち1人のログ全件をサンプルとして表示します。（CVユーザーを優先的に表示）
+28,paths,.path_detail_dl_csv,left,bottom,1,log download',Download all logs of people who took the path.',ログダウンロード',該当パスパターンを持つ全ユーザーのログをダウンロードできます。
+29,paths,.path_detail_open_popup,left,bottom,1,popup detail',It will popup the detail analysis panel.',ドリルダウン,該当パスのパターンを持つユーザーセグメントに絞り、詳細集計を行うことができます。

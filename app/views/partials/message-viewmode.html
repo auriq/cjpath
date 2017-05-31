@@ -1,0 +1,21 @@
+<!-- Under the view mode --> <div class="stickyPanelWrapper clearfix" ng-style="vm.stickypanelcss"> <div class="stickyPanelBackground animate-slidein-bg clearfix"></div> <!--<div class="stickyPanelInner animate-slidein clearfix" ng-show="workingdirisused === 'used'">--> <div class="stickyPanelInner animate-slidein clearfix"> <!--
+    <span class="workdirwarning" ng-hide="issomeoneisimporting" >{{vm.wordsDict.ess_startup.instance.workingdirused}}</span>
+    <span class="workdirwarning" ng-show="issomeoneisimporting">{{vm.wordsDict.ess_startup.instance.workingdirusedandrunningprocess}}</span>
+--> <span class="workdirwarning">{{vm.wordsDict.ess_startup.instance.localusedandrunningprocess}}</span> <button type="button" class="btn btn-default btn-sm dropdown-toggle" ng-click="takeOverUser('workdir')" uib-dropdown-toggle data-toggle="uib-dropdown" aria-haspopup="true" aria-expanded="false"> <!--ng-hide="issomeoneisimporting"--> {{vm.wordsDict.ess_startup.instance.takeover}} <span ng-if="lang!=='Japanese'" class="glyphicon glyphicon-fire"></span> </button> </div> <!--
+  <div class="stickyPanelInner clearfix" ng-show="localisused === 'used' && workingdirisused !== 'used'">
+    <span class="localmasterwarning" ng-hide="issomeoneisimporting">{{vm.wordsDict.ess_startup.instance.localused}}</span>
+    <span class="localmasterwarning" ng-show="issomeoneisimporting" >{{vm.wordsDict.ess_startup.instance.localusedandrunningprocess}}</span>
+    <button
+     type="button"
+     class="btn btn-default btn-sm uib-dropdown-toggle"
+     ng-click="takeOverUser('local')"
+     ng-hide="issomeoneisimporting"
+     uib-dropdown-toggle
+     data-toggle="uib-dropdown"
+     aria-haspopup="true"
+     aria-expanded="false">
+      {{vm.wordsDict.ess_startup.instance.takeover}}
+      <span ng-if="lang!=='Japanese'" class="glyphicon glyphicon-fire"></span>
+    </button>
+  </div>
+--> </div>

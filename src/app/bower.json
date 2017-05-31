@@ -1,0 +1,44 @@
+{
+  "name": "auriq-cjpath",
+  "authors": [
+    "norikoimai <nimai@auriq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "StickyTableHeaders": "^0.1.19",
+    "angular-animate": "^1.6.1",
+    "angular-bootstrap": "^2.5.0",
+    "angular-cookies": "^1.6.1",
+    "angular-mocks": "^1.6.1",
+    "angular-nvd3": "^1.0.9",
+    "angular-resource": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "angular-sanitize": "^1.6.1",
+    "angular-scenario": "^1.6.1",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular": "^1.6.1",
+    "datatables-fixedcolumns": "^3.2.2",
+    "datatables": "^1.10.13",
+    "es5-shim": "^4.5.9",
+    "jqlite": "^1.1.1",
+    "jquery-ui": "jquery.ui#^1.12.1",
+    "jquery.fixedheadertable": "*",
+    "jquery": "^3.1.1",
+    "json3": "^3.3.2",
+    "ng-flow": "^2.7.4",
+    "nvd3": "^1.8.5",
+    "sass-bootstrap": "^3.0.2",
+    "font-awesome":"4.7.0"
+  }
+}

@@ -1,0 +1,22 @@
+
+<!-- Status Viewer -->
+<div class="pull-left" ng-init="isUdbdStatusShow=false;" ng-mouseover="isUdbdStatusShow=true" ng-mouseout="isUdbdStatusShow=false" style="cursor:pointer; position:relative;">
+  <p class="pull-left udbd-status-wrapper">
+    <span class="udbdstatus {{vm.udbdStatus.signal}}">
+      <i ng-if="vm.udbdStatus.signal === 'GREEN'"   class="glyphicon glyphicon-ok-sign"></i>
+      <i ng-if="vm.udbdStatus.signal === 'YELLOW'"  class="glyphicon glyphicon-question-sign"></i>
+      <i ng-if="vm.udbdStatus.signal === 'ORANGE'"  class="glyphicon glyphicon-exclamation-sign"></i>
+      <i ng-if="vm.udbdStatus.signal === 'ERROR'"   class="glyphicon glyphicon-remove-sign"></i>
+    </span>
+    <span>{{vm.wordsDict.ess_status.udbdstatus[vm.udbdStatus.signal]}}</span>
+<!--
+    <span> : {{vm.udbdStatus.using}}/{{vm.udbdStatus.total}} ({{vm.udbdStatus.rate}})</span>
+-->
+  </p>
+  <div id="server-env-detail-tip-wrapper" ng-show="isUdbdStatusShow == true" class="pos-y-bottom pos-x-right">
+    <div class="help-tip">
+      <p>Memory&nbsp;Usage<br>{{vm.udbdStatus.using}}/{{vm.udbdStatus.total}}&nbsp;({{vm.udbdStatus.rate}})</p>
+    </div>
+  </div>
+</div>
+

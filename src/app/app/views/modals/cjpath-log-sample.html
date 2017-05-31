@@ -1,0 +1,60 @@
+
+<div class="modal-wrapper" style="padding: 15px;">
+  <!-- each path's randome user sample panel -->
+  <div class="detailSampleWrapper">
+    <div class="detailSampleInner">
+      <div class="clearfix">
+        <h3 class="pull-left">
+          LOG SAMPLE
+<!--
+          <i class="glyphicon glyphicon-user"></i>
+          {{words.samplelogtitle}}
+-->
+        </h3>
+        <button type="button" class="pull-left btn btn-default" 
+          style="margin-left : 10px; padding:0 2px; margin-top:3px; min-width:160px; text-align:left;"
+          ng-disabled="!isLoaded"
+          ng-attr-title="{{isCVUserOnly ? 'CV User' : 'non-CV User'}}"
+          ng-click="changeCVUserOnlyStatus()">
+          <span class="fa-stack">
+            <i class="fa fa-shopping-cart fa-stack-1x"></i>
+            <i class="fa fa-ban fa-stack-2x" ng-show="!isCVUserOnly"></i>
+          </span>
+          {{isCVUserOnly ? 'From CV User' : 'From non-CV User'}}
+        </button>
+        <p class="pull-right forceclose" style="cursor:pointer; margin-top: 5px;" ng-click="close()">
+          <i class="fa fa-times-circle-o fa-lg" style="font-size: 30px;"></i>
+        </p>
+        <div class="pull-right" style="margin-right:5px; padding-top:3px;">
+          <select class="form-control pull-left" ng-init="dlpattern=-1"
+            ng-model="dlpattern" style="width:170px; margin-right:5px; height:28px;padding-top:4px;">
+            <option ng-value="-1" ng-selected="dlpattern==-1">All Users</option>
+            <option ng-value="1"  ng-selected="dlpattern==1">CV Users Only</option>
+            <option ng-value="0"  ng-selected="dlpattern==0">non-CV Users Only</option>
+          </select>
+          <button type="button" class="btn btn-default btn-sm pull-left" 
+            ng-disabled="dlpattern===undefined" ng-click="download()"><i class="fa fa-download"></i></button>
+        </div>
+      </div>
+      <hr>
+      <div class="detailSampleTableWrapper">
+        <div ng-hide="isLoaded" class="loading">
+          <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+          Loading ...
+        </div>
+        <div ng-show="isLoaded && tabledata.length === 1" class="loading">
+          No Data Available.
+        </div>
+        <div ng-show="isLoaded && tabledata.length>1" class="detailSampleTableWrapperInner" ng-style="tableWrapperStyle">
+          <table class="table table-striped" ng-show="isLoaded && tabledata.length>1">
+            <thead>
+              <tr><th ng-repeat="col in tabledata[0] track by $index" >{{col}}</th></tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in tabledata track by $index" ng-if="$index>0"><td ng-repeat="col in row track by $index" title="{{tabledata[0][$index]}}">{{col}}</td></tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>

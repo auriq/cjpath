@@ -1,0 +1,28 @@
+<!-- Options to select which interaction set to see -->
+<!--<div class="filter-group helper-tp-def" ng-if="!noParameterAvailable">-->
+<div class="filter-group helper-tp-def">
+  <div class="dropdown-container inline ng-scope" uib-dropdown btn-group>
+    <button 
+     id="dropdown_cjpath_grouping_bttn"
+     type="button" 
+     title="Touchpoint Types"
+     class="btn btn-default btn-sm dropdown-toggle" 
+     uib-dropdown-toggle 
+     data-toggle="uib-dropdown"
+     aria-haspopup="true" 
+     ng-disabled="isviewmode"
+     ng-class="{isChanged : tempfilterbuildpathobj.label != filterbuildpathobj.label}"
+     aria-expanded="false"
+     style="width:auto;min-width:190px;">
+      {{tempfilterbuildpathobj.label}}
+      <span class="icon-chevron-down"></span>
+     </button>
+     <ul class="dropdown-menu dropdown-default ng-scope" role="menu" uib-dropdown-menu="">
+      <li class="dropdown-header">{{words.guide_cvpath.filtbuild}}</li>
+      <li ng-repeat="opt in filterbuildpathlist">
+        <a href ng-click="changeFilteBuildPath($index, opt)">{{opt.label}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+      

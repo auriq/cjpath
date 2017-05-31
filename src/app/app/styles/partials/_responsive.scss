@@ -1,0 +1,129 @@
+@media only screen and (max-width: 1400px) and (min-width: 1201px) {
+  .main-widgets {
+    position:static !important;
+    .row {
+      .col-lg-12 {
+        width: 100%;
+        max-width: none;
+        position:static !important;
+      }
+      .col-sm-7 {
+        width: 55%;
+      }
+      .col-sm-5 {
+        width: 45%;
+      }
+    }
+  }
+  .info-widget .info-widget-content .info-widget-value {
+    font-size: em(48px);
+  }
+  .widget.widget-full-height .widget-header .widget-title {
+    width: 175px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .widget-table.trends-summary-table > tbody > tr.subrow > td,
+  .widget-table.trends-summary-table > thead > tr.subrow > td
+  .widget-table {
+    > tbody, > thead {
+      > tr {
+        > th, > td {
+          min-width: 80px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+    &.fixed-thead {
+      > thead {
+        > tr {
+          > th {
+            .thead-fixed-div {
+              padding-left: 15px;
+              padding-right: 20px;
+              margin-left: -15px;
+            }
+          }
+        }
+      }
+    }
+    &.table-double > tbody > tr {
+      > td, > th {
+        padding-left: 13px;
+      }
+    }
+    &.trends-summary-table {
+	    > tbody,
+	    > thead {
+		    > tr.subrow > td {
+          padding-left: 15px;
+          padding-right: 15px;
+		    }
+	    }
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+	.slide-checkbox-default {
+		label {
+			width: 135px;
+		}
+	}
+  .widget-table {
+    > tbody > tr.subrow > td:first-child {
+      padding-left: 20px;
+    }
+    &.fixed-thead > thead > tr > th .thead-fixed-div {
+      padding-left: 10px;
+    }
+    &.score-table, &.progressbar-chart-table {
+      > tbody > tr > td {
+        padding-left: 20px;
+        &.last-click {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .main-content-inner {
+    //width: 1099px !important;
+    width: 100% !important;
+    //min-width: 1099px !important;
+    min-width: 869px !important;
+    max-width: 1099px !important;
+  }
+  .info-widget .info-widget-content .info-widget-value {
+    font-size: em(44px);
+  }
+//  .main-widgets {
+//    .row {
+//      max-width: 100%;
+//      > [class^="col-"], > [class*=" col-"] {
+//        max-width: 100%;
+//        width: 100%;
+//      }
+//    }
+//  }
+  .helpers-close-wrap{
+
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .main-widgets {
+    .row {
+      max-width: 100%;
+      > [class^="col-"], > [class*=" col-"] {
+        max-width: 100%;
+        width: 100%;
+        position:static !important;
+      }
+    }
+  }
+}

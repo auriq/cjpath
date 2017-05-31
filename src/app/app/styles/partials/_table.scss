@@ -1,0 +1,566 @@
+.widget-table {
+  border-bottom: 1px solid $table-border;
+  margin: -5px 0 0;
+  /*&:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: #ff0000;
+    top: 0;
+    left: 0;
+  }*/
+  > thead {
+    > tr {
+      > th {
+        background-color: $white;
+        border-bottom: 1px solid $widget-shadow-border;
+        color: $gray;
+        font-size: em(14px);
+        font-weight: 400;
+        min-width: 100px;
+        padding: 9px 30px 13px;
+
+        position: relative;
+        white-space: nowrap;
+        .can-sort {
+	        cursor: pointer;
+        }
+        .thead-fixed-div {
+          display: none;
+        }
+        &:after {
+
+          background-color: $widget-border-light;
+          bottom: 0;
+          content: '';
+          display: block;
+          height: 1px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+          display: none;
+        }
+        &:before {
+          background: white;
+          content: '';
+          height: 5px;
+          left: 0;
+          margin-left: -1px;
+          position: absolute;
+          top: 0;
+          width: 100%;
+          display: none;
+        }
+        &.mw-100 {
+          min-width: 100px;
+          max-width: 100px;
+        }
+        &.border-left {
+          border-left: 1px solid $widget-border-light;
+        }
+        &.border-right {
+          border-right: 1px solid $widget-border-light;
+        }
+        &.can-sort {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  > tbody {
+    > tr {
+      > td {
+        background-color: $white;
+        border-color: $table-border;
+        color: $gray;
+        font-size: em(16px);
+        font-weight: 700;
+        min-width: 100px;
+
+        padding: 11px 30px 10px;
+        vertical-align: middle;
+        > div:first-child {
+        }
+        &.no-border-top {
+          border-top: none;
+        }
+        &.bottom-text {
+          padding-bottom: 0;
+          vertical-align: bottom;
+        }
+        &.top-text {
+          padding-top: 0;
+          vertical-align: top;
+        }
+        &.no-pl {
+          padding-left: 3px;
+        }
+        &.no-pr {
+          padding-right: 0;
+        }
+        &.mw-70 {
+          min-width: 70px;
+          max-width: 70px;
+          width: 70px;
+        }
+        &.last-click {
+          min-width: 100px;
+          max-width: 100px;
+          width: 100px;
+          padding-left:0px;
+          text-align:center;
+        }
+
+        .table-title {
+          color: $gray;
+          font-size: em(18px,16px);
+          font-weight: 600;
+          letter-spacing: -1px;
+          margin: 3px 0 0;
+          padding-left: 20px;
+          position: relative;
+          white-space: nowrap;
+          .table-arrow {
+            font-size: em(10px);
+            margin-right: 7px;
+          }
+          .table-dot {
+            display: inline-block;
+            height: 14px;
+            @include border-radius(50%);
+            left: 0;
+            margin-right: 6px;
+            position: absolute;
+            top: 3px;
+            width: 14px;
+            &.blue {
+              background-color: #35b1fc;
+            }
+            &.purple {
+              background-color: #B87AC6;
+            }
+            &.green {
+              background-color: $icon-green;
+            }
+            &.yellow {
+              background-color: #ffd507;
+            }
+          }
+        }
+        .table-sub-title {
+          color: $gray-lighter3;
+          font-size: em(16px, 16px);
+          font-weight: 400;
+          margin: 0;
+          padding-left: 20px;
+        }
+        .log-type {
+          width: 93px;
+        }
+      }
+      &.gray {
+        > td {
+          background-color: $table-gray;
+        }
+      }
+
+      &.subrow {
+        > td {
+          padding: 28px 30px;
+          &:first-child, &:last-child {
+            position: relative;
+            &:before, &:after {
+              background-color: $white3;
+              content: '';
+              position: absolute;
+              width: 8px;
+              z-index: 2;
+            }
+            &:before {
+              height: 100%;
+              top: 0;
+            }
+            &:after {
+              bottom: -1px;
+              height: 1px;
+            }
+          }
+          &:first-child {
+            padding-left: 50px;
+            &:before, &:after {
+              border-right: 1px solid $white-darker;
+              left: 0;
+            }
+          }
+          &:last-child {
+            &:before, &:after {
+              border-left: 1px solid $white-darker;
+              right: 0;
+              .DTFC_LeftBodyWrapper & {
+                display: none;
+              }
+            }
+          }
+        }
+        &.last {
+          > td {
+            font-size: 0;
+            height: 8px;
+            line-height: 0;
+            padding: 0;
+            position: relative;
+            &:before {
+              background-color: $white3;
+              border-left: none;
+              border-right: none;
+              border-top: 1px solid $white-darker;
+              bottom: 0;
+              content: '';
+              display: block;
+              height: 8px;
+              left: 0;
+              position: absolute;
+              top: auto;
+              width: 100%;
+              z-index: 1;
+            }
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.widget-table-striped {
+    > tbody {
+      > tr {
+        > td, > th {
+          background-color: $white;
+        }
+        &.gray {
+          > td, > th {
+            background-color: $table-gray;
+          }
+        }
+      }
+    }
+  }
+
+  &.table-clickable {
+    > tbody {
+      > tr {
+        &.active/*, &:hover*/ {
+          > td, > th {
+            border-color: $popover-hover-border;
+            background-color: $table-hover;
+            color: $white;
+            .table-title {
+              color: $white;
+            }
+            .progressbar-wrapper {
+              background-color: $progress-hover;
+              border-color: $progress-hover;
+            }
+            .popover {
+              background-color: $popover-hover-bg;
+              border-color: $popover-hover-border;
+              @include box-shadow(0 2px 0 #313B4B);
+              .popover-inner {
+                .popover-content {
+                  color: $white;
+                }
+              }
+              &.top {
+                .arrow {
+                  border-top-color: $popover-hover-border;
+                  &:after {
+                    border-top-color: $popover-hover-bg;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.table-double {
+    > tbody {
+      >tr {
+        > td, > th {
+          padding: 30px 0 26px 30px;
+        }
+      }
+    }
+  }
+
+  &.progressbar-chart-table {
+    > tbody, > thead {
+      > tr {
+        > td, > th {
+          padding-left: 13px;
+          padding-right: 13px;
+          vertical-align: middle;
+          &:first-child {
+            max-width: 175px;
+            min-width: 175px;
+            padding-left: 30px;
+          }
+//          .table-title {
+//            white-space: normal;
+//          }
+          .graph-icon {
+            display: none;
+            @include border-radius(3px);
+//            @include inline-block;
+            height: 15px;
+            margin-right: 5px;
+            position: relative;
+            top: -1px;
+            width: 15px;
+            $icon: length($graph-icon-bg);
+            @while ($icon > 0 ) {
+              &.blue#{$icon} {
+                background-color: nth($graph-icon-bg, $icon);
+                border: 1px solid nth($graph-icon-border, $icon);
+              }
+              $icon: $icon - 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.fht-table {
+    margin: 0;
+    > thead > tr > th {
+      @include box-sizing(content-box);
+    }
+    > tbody > tr {
+      > td {
+        @include box-sizing(content-box);
+      }
+      &:first-child {
+        > td {
+          border-top-color: transparent;
+        }
+      }
+    }
+  }
+
+  &.score-table, &.progressbar-chart-table {
+    > tbody {
+      > tr {
+        > td {
+          overflow: hidden;
+          width: 260px;
+          .table-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 150px;
+          }
+          &.last-click {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  &.progressbar-chart-table {
+    > tbody {
+      > tr {
+        > td {
+          overflow: hidden;
+          .table-title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width: 150px;
+
+          }
+        }
+      }
+    }
+  }
+
+  &.fixed-thead {
+    > thead {
+      > tr {
+        > th {
+          background: transparent;
+          border: none;
+          color: transparent;
+          height: 0;
+          line-height: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          position: static;
+          white-space: nowrap;
+          .thead-fixed-div {
+            background-color: transparent;
+            color: $gray;
+            display: block;
+            font-size: em(14px);
+            font-weight: 400;
+            line-height: 20px;
+
+            margin-left: -30px;
+            padding: 9px 30px 13px;
+            position: absolute;
+            top: 0;
+            white-space: nowrap;
+            &.border-left {
+              border-left: 1px solid $widget-border-light;
+            }
+            .graph-icon {
+              @include inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.table-thead-emulator {
+  background-color: $white;
+  border-bottom: 2px solid $widget-shadow-border;
+  height: 44px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  &:after {
+
+    background-color: $widget-border-light;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+  &:before {
+    background: white;
+    content: '';
+    height: 5px;
+    left: 0;
+    margin-left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.table-wrapper {
+  max-height: 383px;
+  overflow-y: auto;
+  .widget-full-height & {
+    max-height: 895px;
+  }
+  &.summary-table {
+    max-height: 379px;
+    margin-top: -44px;
+    .widget-table {
+      margin-top: 4px;
+    }
+  }
+  .sort-icon {
+    font-size: em(7px);
+    right: 5px;
+    position: absolute;
+    top: 11px;
+    &.last {
+      left: auto;
+      right: 15px;
+    }
+  }
+  .fullscreen & {
+    max-height: 100% !important;
+  }
+}
+
+.fht-fixed-column {
+  .fht-tbody {
+    .widget-table > tbody > tr.subrow > td:last-child:before, .widget-table > tbody > tr.subrow > td:last-child:after {
+      display: none;
+    }
+  }
+}
+
+.widget-table {
+  &.trends-summary-table {
+
+    > tbody,> thead {
+      > tr {
+        > td, >th {
+          &:first-child {
+            $width: 140px;
+            width: $width !important;
+            min-width: $width !important;
+            max-width: $width !important;
+            &+td, &+th {
+              $width: 105px;
+              width: $width !important;
+              min-width: $width !important;
+              max-width: $width !important;
+            }
+//            width: 150px !important;
+//            min-width: 150px !important;
+          }
+        }
+        &.subrow {
+          > td {
+            padding: 11px 30px 10px;
+            &.bottom-text {
+//              padding-bottom: 0;
+              vertical-align: middle;
+//              > .table-title {
+//                margin-top: 10px;
+//                position: absolute;
+//              }
+            }
+            &.top-text {
+              display: none;
+              > * {
+                display: none;
+              }
+              padding-top: 0;
+              vertical-align: top;
+            }
+            &.no-pl {
+              padding-left: 0;
+            }
+            .table-title {
+              max-width: 160px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+            &:first-child {
+              padding-right: 0;
+            }
+          }
+          &.even {
+            > td:first-child:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+tr.click-row, td.click-row {
+  cursor: pointer;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: none;
+}

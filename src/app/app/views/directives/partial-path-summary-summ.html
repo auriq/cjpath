@@ -1,0 +1,86 @@
+<!-- summary contents -->
+<div class="path-summary-content clearfix">
+  <div class="path-summary-upper"
+    ng-style="{'min-height' : data[selectedIndex].repvalue.main.period.from=='' ? '250px' : '270px'}">
+    <div class="upper-content path-summary-upper-left">
+      <div class="top-widgets widgets-justified ng-scope">
+        <div class="widgets-justified-item ng-scope">
+          <div class="widget info-widget">
+            <div class="info-widget-content" 
+              ng-style="{'min-height' : data[selectedIndex].repvalue.main.period.from=='' ? '120px' : '180px', 'padding-bottom' : data[selectedIndex].repvalue.main.period.from=='' ? '33px' : '66px'}">
+              <div class="info-widget-value">
+                {{data[selectedIndex].repvalue.main.label}}
+              </div>
+              <div class="info-widget-text">
+                {{data[selectedIndex].dict.cv}}<br>
+              </div>
+              <div class="info-widget-period" ng-if="data[selectedIndex].repvalue.main.period.from!=''">
+                {{data[selectedIndex].repvalue.main.period.from}}
+                &nbsp;&nbsp;{{data[selectedIndex].dict.mddl}}
+                {{data[selectedIndex].repvalue.main.period.to}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="upper-content path-summary-upper-right clearfix">
+      <div class="top-widgets widgets-justified ng-scope">
+<!--
+        <div class="info-widget-head">
+          {{data[selectedIndex].pathlens.title | uppercase}}
+        </div>
+-->
+        <div 
+          ng-repeat="path in data[selectedIndex].pathlens.data track by $index" 
+          ng-style="{width: 100/data[selectedIndex].pathlens.data.length + '%'}"
+          class="widgets-justified-item ng-scope">
+          <div class="widget info-widget">
+            <div class="info-widget-content" ng-style="{'min-height' : path.comp_val.period.from=='' ? '120px' : '180px', 'padding-bottom' : path.comp_val.period.from=='' ? '33px' : '66px'}">
+              <div class="info-widget-value">
+                {{path.act_value.value}}
+              </div>
+              <div class="info-widget-text">
+                {{data[selectedIndex].dict.cvlenhead}}<br>
+                <span class="font-bold">{{path.act_value.title | ordinalNumberSuffix}}</span><br>
+                {{data[selectedIndex].dict.cvlentail}}
+              </div>
+              <div class="info-widget-footer">
+                <div class="info-widget-footer-value ng-binding" ng-if="path.comp_val.period.from!=''">
+                  {{path.comp_val.period.from}} {{data[selectedIndex].dict.mddl}} {{path.comp_val.period.to}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="path-summary-bottom clearfix" ng-show="isLoaded">
+    <div class="top-widgets widgets-justified ng-scope">
+      <div 
+        ng-repeat="pie in data[selectedIndex].pies.data track by $index" 
+        ng-style="{width: (100 - data[selectedIndex].pies.data.length)/data[selectedIndex].pies.data.length + '%'}"
+        class="widgets-justified-item ng-scope">
+        <div class="widget info-widget">
+          <div class="info-widget-content global-summary-summ-piechart">
+            <aq-chart 
+                data="pie.nvd3values" 
+                charttype="'pieChart'" 
+                options="piechart_options" 
+                colors="piechart_colors"
+                isshowlegendflg="false"
+                lang="optglbl.lang"></aq-chart>
+            <div class="info-widget-value pie-chart-label">
+              {{pie.nvd3values[0].value*100 | number:1}}%
+            </div>
+            <div class="info-widget-footer">
+              <span class="font-bold">{{pie.title}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END CONTENT -->

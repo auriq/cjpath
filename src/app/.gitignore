@@ -1,0 +1,9 @@
+node_modules
+.tmp
+.sass-cache
+dist/bower_components
+app/bower_components
+.idea
+tmp
+.DS_Store
+auriq-dashboard.iml

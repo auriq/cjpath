@@ -1,0 +1,83 @@
+<script type="text/javascript">
+  var aqObject = aqObject || {
+    _q: [],
+    tag: function() { this._q.push(arguments); },
+    jsload: function(src) {
+      var a, s;
+      if ((a = document.createElement("script"))) {
+        a.type = "text/javascript";
+        a.async = true;
+        a.src = ("https:" == document.location.protocol ? "https://" : "http://") + src;
+        s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(a, s);
+      }
+    }
+  };
+  aqObject.aqid = "5HXZVGRQX6562MRK6L2A";
+  aqObject.jsload("t10.aqtracker.com/asp/aq_tag_aos.js");
+
+  var tags = {
+    'host-view': window.location.hostname,
+    'browser' : return_browserinfo(),
+    'window-width' : $(window).width(),
+    'window-height' : $(window).height(),
+    'event-target' : 'load',
+    'event-type' : 'type'
+  };
+  $(document).ready(function(){
+    callaqlog();
+  });
+  $(window).click(function(e){
+    callaqlog(e);
+  });
+
+  function callaqlog(e){
+    var tagsarr = [];
+    for(var key in tags){
+      var tval = tags[key];
+      if(key.indexOf('event',0) !== -1 && e !== undefined){
+        if(key === 'event-target'){
+          tval = e.tagName + ':' + e.target.id + ':' + $(e.target).attr('class');
+        }else if(key === 'event-type'){
+          tval = 'click';
+        }
+      }
+      tagsarr.push(key + '=' + tval);
+    }
+    aqObject.tag('tag_cat', tagsarr.join('&'));
+  }
+
+  function return_browserinfo(){
+    var ua = navigator.userAgent.toLowerCase.toString();
+    // --- browser  ---------------------------------
+    if(ua.indexOf('sleipnir') > 0){
+      // Sleipnir
+      return 'slepnir';
+    }else if((ua.indexOf('msie') > 0)|| (ua.indexOf('trident') > 0)){
+      // Internet Explorer
+      return 'ie';
+    }else if(ua.indexOf('chrome') > 0){
+      // Chrome
+      return 'chrome';
+    }else if(ua.indexOf('firefox') > 0){
+      // Firefox
+      return 'ff';
+    }else if(ua.indexOf('safari') > 0){
+      // Safari
+      return 'safari';
+    }else if(ua.indexOf('opera') > 0){
+      // Opera
+      return 'opera';
+    }else if((ua.indexOf('nintendo') > 0) || (ua.indexOf('playstation') > 0)){
+      // game
+      return 'game';
+    }else if((ua.indexOf('docomo') > 0) || (ua.indexOf('kddi') > 0) || (ua.indexOf('up.browser') > 0) || (ua.indexOf('softbank') > 0) || (ua.indexOf('j-phone') > 0) || (ua.indexOf('willcom') > 0)){
+      // mobile
+      return 'old-mobile';
+    }else{
+      // other
+      return 'others';
+    }
+  }
+</script>
+

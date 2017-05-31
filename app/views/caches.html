@@ -1,0 +1,85 @@
+<div class="stickyPanelWrapper clearfix" ng-show="main.islogout" ng-style="stickypanelcss"> <div class="stickyPanelBackground animate-slidein-bg clearfix"></div> <div class="stickyPanelInner animate-slidein clearfix" ng-bind-html="words.sessionout"> </div> </div> <div class="main-content" id="main-content" ng-show="!main.islogout"> <div class="main-content-inner {{bodyClass}}" resize ng-style="setMinWidth(87);"> <header class="header" id="header"> <div class="logo pull-left"></div> <div class="header-controls clearfix"> <!--<help-tour contenttype="'paths'" startidx="0"></help-tour>--> <i class="logout-btn icon-nav-logout" ng-click="vm.logout()" title="Sign Out" style="cursor:pointer;font-size:28px"></i> <!--<div class="pull-left" ng-include src="'views/partials/udbd-status.html'"></div>--> </div> <!-- project switch panel --> <div class="pull-right" ng-show="projects.length > 0" style="margin-right:10px"><div ng-include src="'views/partials/projects-switch.html'"></div></div> </header> <!--
+{{vm.envStatus}}
+{{vm.appStatus}}
+{{vm.otherUserStatus}}
+{{vm.isGlobalSelectChanged}}
+--> <!-- When occupied --> <div class="configWrapper" ng-show="!vm.isAuthUser"> <p style="text-align:center">You are not authorized to see this contents.</p> </div> <div class="configWrapper active" ng-show="vm.isAuthUser"> <div class="configLeft"> <div ng-repeat="menu in vm.menus"> <p class="menu" ng-class="menu.class" ng-click="vm.changeMenu(menu, $index)">{{menu.label}}</p> </div> </div> <div class="configRight" ng-style="{'min-height' : menu_h+'px'}"> <!-- Loading dialog --> <div ng-show="vm.isLoading"> <p style="text-align:center;padding-top:100px"><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p> <!--<div class="widgets-container clearfix" ng-include src="'views/partials/dialog-loading.html'"></div>--> </div> <!-- batch list [start] --> <div ng-show="vm.selectedItem.contenttype === 'cachelist' && !vm.isLoading"> <div class="form-inline"> <button type="button" class="btn btn-default btn-sm" title="Fetch cache list from your cache directory" ng-click="vm.syncFromS3()"> <span class="fa fa-refresh"></span> </button> <div class="checkbox pull-right"> <input type="checkbox" ng-change="vm.changeIfDeletedItemsToShow()" ng-model="vm.selectedItem.params.is_show_deleted"> show deleted items </div> </div> <table class="table table-striped table-fixed" style="margin-top:20px"> <thead> <tr> <!--<th>directoryname</th>--> <th>name</th> <th>type</th> <th>memo</th> <th style="width:40px"></th> <th style="width:40px"></th> <th style="width:40px"></th> <th style="width:40px"></th> </tr> </thead> <tbody> <tr ng-repeat="cache in cachelist"> <!--<td>{{cache.cachedirname}}</td>--> <td>{{cache.label}}</td> <td>{{cache.type}}</td> <td>{{cache.memo}}</td> <td> <button type="button" class="btn btn-default btn-sm" title="Open edit panel" ng-click="open_modify_panel('edit', cache)"> <span class="fa fa-pencil"></span> </button> </td> <td> <button type="button" class="btn btn-default btn-sm" title="View cache list & remove cache" ng-click="vm.openCacheFilesModal(cache)"> <span class="fa fa-list-ul"></span> </button> </td> <td> <button type="button" class="btn btn-default btn-sm" title="Activate this dataset" ng-click="vm.updateCacheListDbInfo(cache, 'isactive')"> <span ng-if="cache.isactive==1" class="fa fa-check-circle"></span> <span ng-if="cache.isactive!=1" class="fa fa-minus"></span> </button> </td> <td> <button type="button" class="btn btn-default btn-sm" title="Remove this dataset" ng-click="vm.updateCacheListDbInfo(cache, 'deleted_at')"> <span ng-if="cache.deleted_at === null" class="fa fa-trash"></span> <span ng-if="cache.deleted_at !== null" class="fa fa-recycle"></span> </button> <!--ng-disabled="cache.deleted_at !== null"--> </td> </tr> </tbody> </table> </div> <!-- batch list [end] --> <!-- batch contents [start] --> <div ng-show="vm.selectedItem.contenttype === 'cachebatch' && !vm.isLoading"> <div> <p style="text-align:center;margin-top:20px">Coming soon... <i class="glyphicon glyphicon-road"></i></p> </div> <script>/*
+          <!-- When loading is done -->
+          <div ng-show="!vm.appStatus.isLoading">
+            <div class="content" id="paths-content">
+              <!-- Head Menus -->
+              <!--<div class="content-header clearfix"></div>-->
+              <!-- filetering setting content -->
+              <button
+               type="button"
+               class="btn btn-default btn-sm dropdown-toggle"
+               ng-click="open_modify_panel('add')"
+               ng-disabled="isNowAdding"
+               aria-haspopup="true"
+               aria-expanded="false">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+        
+              <div style="margin-top:15px;">
+                <table class="table table-striped table-fixed">
+                  <tr>
+                    <td>date from</th>
+                    <td>date to</th>
+                    <td>days go back</th>
+                    <td>sample size</th>
+                    <td>comment</th>
+                    <td>status</th>
+                    <td style="width:50px;">edit</th>
+                    <td style="width:50px;">remove</th>
+                  </tr>
+                  <tr ng-repeat="cache in cachelist" ng-if="cache.deleted_at === ''">
+                    <td>{{cache.sdate}}</td>
+                    <td>{{cache.edate}}</td>
+                    <td>{{cache.bdays}}</td>
+                    <td>{{cache.sample}}</td>
+                    <td>{{cache.comment}}</td>
+                    <td>
+                      <span ng-show="cache.status === 'done'">
+                        <span ng-show="cache.timestamp_done === ''">
+                          done
+                        </span>
+                        <span ng-show="cache.timestamp_done !== ''">
+                          done at {{cache.timestamp_done}}
+                        </span>
+                      </span>
+                      <span ng-show="cache.status === 'requested'">
+                        requested at {{cache.timestamp_requested}}
+                      </span>
+                      <span ng-show="cache.status === 'canceled'">
+                        canceled at {{cache.timestamp_done}}
+                      </span>
+                    </td>
+                    <td style="width:50px;">
+                      <button
+                       type="button"
+                       class="btn btn-default btn-sm dropdown-toggle"
+                       ng-click="open_modify_panel('edit', cache)"
+                       ng-disabled="isNowAdding"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </button>
+                    </td>
+                    <td style="width:50px;">
+                      <button
+                       type="button"
+                       class="btn btn-default btn-sm dropdown-toggle"
+                       ng-click="remove(cache)"
+                       ng-disabled="isNowAdding"
+                       aria-haspopup="true"
+                       aria-expanded="false">
+                        <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+*/</script> </div> <!-- batch contents [end] --> </div> </div> </div></div>

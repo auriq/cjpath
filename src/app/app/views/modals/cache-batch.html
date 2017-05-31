@@ -1,0 +1,122 @@
+<div class="modal-wrapper" style="padding: 15px;">
+  <h3 style="text-align:center;">Request</h3>
+  <div ng-if="isLoading" style="text-align:center;">
+    <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+  </div>
+  <div ng-if="!isLoading">
+    <div ng-show="operationtype === 'add'">
+<!--
+      <div>
+      </div>
+-->
+      <table class="table table-striped" style="margin-bottom:10px;">
+        <tr ng-repeat="obj in addObj">
+          <td>{{obj.label}}</td>
+          <td>
+            <div ng-class="{'has-error' : obj.iserror}">
+              <input
+                type="text"
+                class="form-control helper-keyword-search"
+                ng-blur="formatcheck(obj)"
+                ng-model="obj.value"
+                placeholder="{{obj.help}}" />
+              <div class="alert alert-danger" role="alert" ng-if="obj.message" style="margin-top:5px;">{{obj.message}}</div>
+            </div>
+          </td>
+        </tr>
+      </table>
+<!--
+      <div class="clearfix">
+        <div class="pull-right" style="margin-right:10%;">
+          <button type="button" class="btn btn-default" ng-click="deletes3()"><i class="fa fa-trash-o"></i></button>
+        </div>
+      </div>
+-->
+      <div class="footer clearfix" style="width: 130px; margin:0 auto;">
+        <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button>
+        <button type="button" class="btn btn-default pull-left" style="margin-left:10px;" ng-click="save_new()">save</button>
+      </div>
+    </div>
+    <div ng-show="operationtype === 'edit'">
+      <table class="table table-striped" style="margin-bottom:10px;">
+        <tr ng-repeat="key in columnsorder">
+          <td>{{key}}</td>
+          <td>
+            <div ng-show="key !== 'comment'">
+              {{editObj[key]}}
+            </div>
+            <div ng-show="key === 'comment'">
+              <input
+                type="text"
+                class="form-control"
+                ng-model="editObj[key]" />
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+      <div class="footer clearfix" style="width: 130px; margin:0 auto;">
+        <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button>
+        <button type="button" class="btn btn-default pull-left" style="margin-left:10px;" ng-click="save_modify()">save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<button 
+    type="button" 
+    class="btn btn-default btn-sm uib-dropdown-toggle" 
+    style="min-width:initial;min-width:auto;"
+    uib-dropdown-toggle 
+    data-toggle="uib-dropdown"
+    aria-haspopup="true" 
+    ng-click="panelopen = !panelopen"
+    aria-expanded="false">
+<span class="icon-upload"></span>
+</button>
+
+<div ng-show="panelopen">
+  <div class="modal-backdrop fade  in" modal-backdrop="" style="z-index: 1040;" ng-click="cancel()"></div>
+  <div tabindex="-1" role="dialog" class="modal fade ng-isolate-scope in" modal-window="" index="0" animate="animate" style="z-index: 1050; display: block;">
+    <div id="upload-file-modal" class="modal-content"> 
+      <div class="modal-header">
+        <h3 class="modal-title">{{words.paneltitle}}</h3>
+      </div>
+      <div class="modal-body">
+    
+        <form action=""
+              id="flow-form"
+              flow-init="auriqFlowInit"
+              flow-file-added="fileAdded($file, $event, $flow)"
+              flow-file-success="fileSuccess($file, $event, $flow)"
+              flow-file-error="fileError()"
+              flow-object="auriqFlow"
+              flow-file-success="$file.msg = $message">
+          <div class="file-drop-area" data-action="dropzone" id="file-dropzone"
+               ng-class="dropClass"
+               flow-drop>
+            <span class="icon-upload"></span>
+            <div ng-if="$flow.files.length == 0">
+              <h4 class="file-drop-text">
+               {{words.dragcsv}} {{words.or}}
+                <span id="upload-browse" class="upload-btn" flow-btn flow-single-file>{{words.browse}}</span> {{words.uploadguide}}
+              </h4>
+    
+            </div>
+            <div ng-if="$flow.files.length > 0">
+              <h4 class="file-name">{{$flow.files[$flow.files.length-1].name}}</h4>
+              <label id="uploading" class="reupload-btn hidden">{{words.uploading}}</label>
+              <label id="upload-change" class="reupload-btn" ng-click="clearForm();">{{worde.change}}</label> 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default disabled btn-block" id="upload-save-btn" disabled ng-click="ok()">{{words.upload}}</button>
+        <button class="btn btn-default btn-block" ng-click="cancel()">{{words.cancel}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+-->

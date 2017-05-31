@@ -1,0 +1,15 @@
+<div class="modal-wrapper" style="padding: 15px"> <h3 style="text-align:center">Cache File List</h3> <div ng-if="isLoading" style="text-align:center"> <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p> </div> <div ng-if="!isLoading"> <!-- Clear Cache --> <div> <div class="clearfix" style="border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 0 rgba(255,255,255,1); margin-bottom:30px"> <div style="text-align: center; padding-top:10px"> <button type="button" class="btn btn-default active" ng-click="clearCache(clearCacheType)">clear cache</button> <p style="margin-top:10px;margin-bottom:20px">This opetion will remove "temporary" cache files.</p> </div> <!--
+        <h4>Clear Cache</h4>
+        <div class="radio" style="margin-left:30px;">
+          <label><input type="radio" name="clearCacheType" ng-model="clearCacheType" value="withoutcj">Clear Temporary Files</label>
+          <p>This opetion will remove only "temporary" cache files.</p>
+        </div>
+        <div class="radio" style="margin-left:30px;">
+          <label><input type="radio" name="clearCacheType" ng-model="clearCacheType" value="all">Clear All Files</label>
+          <p>If you clear everything, you will need to import data from the scratch and it takes time.</p>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-default active" ng-click="clearCache(clearCacheType)">clear cache</button>
+      </div>
+--> </div> <!-- Cache File List --> <div class="clearfix"> <h4 class="pull-left">Cache List</h4> <i class="fa pull-right" ng-attr-title="{{isCollapsed ? 'Show list' : 'Hide List'}}" ng-class="{'fa-chevron-up':!isCollapsed, 'fa-chevron-down':isCollapsed}" ng-click="isCollapsed = !isCollapsed"></i> </div> <div uib-collapse="isCollapsed"> <table class="table table-striped" style="margin-bottom:10px"> <tr ng-repeat="file in filelist"> <td style="width:150px">{{file}}</td> </tr> </table> </div> <div class="footer clearfix" style="width: 130px; margin:0 auto"> <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button> <!--<button type="button" class="btn btn-default pull-left active" style="margin-left:10px;" ng-click="save_modify()">save</button>--> </div> </div> </div></div>

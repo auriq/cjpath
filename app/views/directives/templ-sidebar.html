@@ -1,0 +1,11 @@
+<div class="sidebar-overlay" id="sidebar-overlay" data-ng-click="toggleSidebar()"></div> <div class="sidebar" id="sidebar"> <button class="icon-menu-open collapse-btn" data-action="collapse-sidebar" data-ng-click="toggleSidebar()"> </button> <button class="icon-menu-closed collapse-btn uncollapse-btn" data-action="collapse-sidebar" data-ng-click="toggleSidebar()"> </button> <div class="clearfix"></div> <div class="sidebar-wrapper"> <div> <uib-accordion> <!--  Path content --> <uib-accordion-group is-open="groups.paths.isOpen" ng-if="main.availableContentList.paths.isExist" ng-class="{ 'panel-active': groups.paths.isActive }"> <uib-accordion-header> <div class="accordion-toggle-item icon-nav-pie" ng-click="activateItem(groups.paths)" ng-class="{'open': isOpen}"> <span class="glyphicon_title">{{main.availableContentList.paths.title}}</span> </div> </uib-accordion-header> </uib-accordion-group> <!-- Cache List  --> <uib-accordion-group ng-class="{ 'panel-active': groups.caches.isActive }" ng-show="isAuthUser"> <uib-accordion-header> <div class="accordion-toggle-item fa fa-database" ng-click="activateItem(groups.caches)" ng-class="{'open': isOpen}"> <span class="glyphicon_title">Data Cache</span> </div> </uib-accordion-header> </uib-accordion-group> <!-- Config List  --> <uib-accordion-group ng-class="{ 'panel-active': groups.configs.isActive }" ng-show="isAuthUser"> <uib-accordion-header> <div class="accordion-toggle-item fa fa-cog" ng-click="activateItem(groups.configs)" ng-class="{'open': isOpen}"> <span class="glyphicon_title">Filter Config</span> </div> </uib-accordion-header> </uib-accordion-group> <script>/*
+        <!-- Dev Tool  -->
+        <uib-accordion-group ng-class="{ 'panel-active': groups.devtools.isActive }" ng-show="isAuthUser">
+          <uib-accordion-header>
+            <div class="accordion-toggle-item glyphicon glyphicon-wrench"
+                 ng-click="activateItem(groups.devtools)"
+                 ng-class="{'open': isOpen}"><span class="glyphicon_title">Dev Tools</span>
+            </div>
+          </uib-accordion-header>
+        </uib-accordion-group>
+*/</script> </uib-accordion> </div> </div> </div>

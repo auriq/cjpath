@@ -1,0 +1,31 @@
+<script>/*
+<div class="modal-wrapper" style="padding: 15px;">
+  <h3 style="text-align:center;" ng-if="operationtype=='edit'">DB Manipulation</h3>
+  <h3 style="text-align:center;" ng-if="operationtype=='add'">DB Add</h3>
+  <div ng-if="isLoading" style="text-align:center;">
+    <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+  </div>
+  <div ng-if="!isLoading">
+    <div>
+      <table class="table table-striped" style="margin-bottom:10px;">
+        <tr ng-repeat="key in fieldList">
+          <td>{{key}}</td>
+          <td>
+            <div ng-show="key === 'id'">
+              {{dbRowObj[key]}}
+            </div>
+            <div ng-show="key !== 'id'">
+              <input type="text" ng-if="dbRowObj[key].length <=20" class="form-control" ng-model="dbRowObj[key]" />
+              <textarea ng-if="dbRowObj[key].length > 20" class="form-control" ng-model="dbRowObj[key]"></textarea>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="footer clearfix" style="width: 130px; margin:0 auto;">
+      <button type="button" class="btn btn-default pull-left" style="" ng-click="cancel()">close</button>
+      <button type="button" class="btn btn-default pull-left" style="margin-left:10px;" ng-click="save()">save</button>
+    </div>
+  </div>
+</div>
+*/</script>

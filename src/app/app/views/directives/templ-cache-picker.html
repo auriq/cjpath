@@ -1,0 +1,46 @@
+
+<div class="dropdown-container clearfix" uib-dropdown btn-group style="width:100%;">
+  <span id="ruler-{{btn_id}}" style="visibility:hidden; font-size:16px;"></span>
+  <button type="button" class="btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle data-toggle="uib-dropdown"
+          id="{{btn_id}}"
+          ng-class="{isChanged : ischanged}"
+          ng-disabled="isviewmode || !userselect_cachelabel"
+          style="width:100%; overflow:hidden;"
+          class="clearfix"
+          ng-attr-title="{{userselect_cachelabel ? userselect_cachelabel : 'Go to \'Data Cache\' page and entry your dataset.'}}"
+          aria-haspopup="true" aria-expanded="false">
+    <span class="icon-chevron-down" style="margin-left:0px;"></span>
+    <p class="cache-picker-selectlabel" style="text-align:center; text-indent:0px;">{{userselect_cachelabel ? (userselect_cachelabel | ellipsedString:btn_id) : 'NON'}}</p>
+  </button>
+  <ul class="dropdown-menu dropdown-default ng-scope" role="menu" uib-dropdown-menu="" style="z-index:900;min-width:300px !important;">
+    <li id="cachesearchbykeywords" ng-click="$event.stopPropagation()" ng-show="cachelist.length > 5">
+      <input type="search" class="form-control" 
+             style="width:98%;margin-left:3px;"
+             placeholder="search for.." 
+             ng-model="cachesearchkeyword"/>
+    </li>
+    <li ng-repeat="cache in cachelist | filter:searchFilter | orderBy:'label'" class="cachelist" ng-class="{'user-select' : cache.is_selected===true}">
+      <div class="clearfix dropdown-help-tip-contains">
+        <a href="javascript: void(0);" ng-click="changeCache(cache, $index)" class="pull-left" style="width: calc(100% - 30px);">
+          <i ng-if="cache.is_imported" class="fa fa-check-circle"></i>
+          <span ng-if="!cache.is_imported">&nbsp;&nbsp;&nbsp;</span>
+          {{cache.label}}
+        </a>
+        <button type="button" 
+          class="btn btn-default btn-sm dropdown-help-tip-trig-button pull-right" 
+          ng-if="cache.description.length > 0" 
+          ng-mouseover="cache.isShowDescription = true"
+          ng-mouseout="cache.isShowDescription = false">
+          <i ng-if="cache.description.length > 0" class="fa fa-caret-right"></i>
+        </button>
+        <div class="dropdown-help-tip-wrapper">
+          <div ng-show="cache.isShowDescription===true" class="dropdown-help-tip">
+            <i class="fa fa-question"></i>
+            <span ng-bind-html="cache.description"></span>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+

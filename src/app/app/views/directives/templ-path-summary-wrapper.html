@@ -1,0 +1,31 @@
+
+<div class="widget-inner">
+
+  <div class="fullscreenWrapperPath">
+    <div ng-include src="'views/partials/fullscreen-topbar.html'"></div>
+  </div>
+  <div class="widget-header" style="background:none;border-bottom:none;">
+    <div class="widget-header-inner clearfix">
+<!--
+      <div class="widget-title pull-left">
+        <i class="icon-fullscreen" fullscreen-btn title="fullscreen mode"></i>
+        {{optcont.title}}
+      </div>
+      <help-tour ng-if="!fullscreenFlg" class="pull-right" contenttype="'paths'" startidx="3"></help-tour>
+-->
+    </div>
+  </div>
+
+  <!--<div id="widget-global-summary-content" style="border-top:1px solid #ddd;">-->
+  <div id="widget-global-summary-content" style="border-top:1px solid #f2f2f2;">
+    <path-summary
+      class="path-summary-directive"
+      isapploaded="isapploaded"
+      masterflg="masterflg"
+      filterupdatecnt="filterupdatecnt"
+      optcont="optcont"
+      optglbl="optglbl.global" isactive="isactive" ctype="''" cheight="cheight" cwidth="cwidth" isviewmode="isviewmode"></path-summary>
+  </div>
+
+</div>
+

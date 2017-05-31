@@ -1,0 +1,135 @@
+
+<div class="stickyPanelWrapper clearfix" ng-show="main.islogout" ng-style="stickypanelcss">
+  <div class="stickyPanelBackground animate-slidein-bg clearfix"></div>
+  <div class="stickyPanelInner animate-slidein clearfix" ng-bind-html="words.sessionout">
+  </div>
+</div>
+
+<div class="main-content" id="main-content" ng-show="!main.islogout">
+  <div class="main-content-inner {{bodyClass}}" resize ng-style="setMinWidth(87);">
+
+    <header class="header" id="header">
+      <div class="logo pull-left"></div>
+      <div class="header-controls clearfix">
+        <i class="logout-btn icon-nav-logout" ng-click="vm.logout()" title="Sign Out" style="cursor:pointer;font-size:28px;"></i>
+      </div>
+      <!-- project switch panel -->
+      <div class="pull-right" ng-show="projects.length > 0" style="margin-right:10px;"><div ng-include src="'views/partials/projects-switch.html'"></div></div>
+    </header>
+    <div class="configWrapper" ng-show="!vm.isAuthUser">
+      <p style="text-align:center;">You are not authorized to see this contents.</p>
+    </div>
+    <div class="configWrapper active" ng-show="vm.isAuthUser">
+    <!--<div id="configWrapper">-->
+      <div class="configLeft">
+        <div ng-repeat="menu in vm.menus">
+          <p class="menu" ng-class="menu.class" ng-click="vm.changeMenu(menu, $index)">{{menu.label}}</p>
+        </div>
+      </div>
+      <div class="configRight" ng-style="{'min-height' : menu_h+'px'}">
+        <h2>{{vm.selectedItem.label}}</h2>
+        <div ng-if="vm.isLoading" class="isloading">
+          <p><i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i> Loading...</p>
+        </div>
+        <div ng-if="!vm.isLoading">
+          <div ng-show="vm.selectedItem.description !== ''">
+            <p ng-bind-html="vm.selectedItem.description"></p>
+          </div>
+          <div ng-show="vm.thead.length>0" class="clearfix">
+            <div ng-show="vm.selectedItem.description !== ''" style="margin-top:30px;border-bottom: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 0 rgba(255,255,255,1);margin-bottom:30px;"></div>
+            <div ng-show="vm.selectedItem.params.gettype === 'options'" style="margin-bottom:15px;">
+<!--
+              <div>
+                <button type="button" class="btn btn-default btn-sm" 
+                  ng-repeat="essparaobj in vm.selectedItem.params.essparams"
+                  ng-click="vm.changeFilterTypeInPartsPage(vm.selectedItem.params.essparams, essparaobj)"
+                  style="min-width: 120px; margin-right:10px;"
+                  ng-class="{'active' : essparaobj.isactive}">
+                  {{essparaobj.label}}
+                </button>
+              </div>
+-->
+              <button type="button" class="btn btn-default btn-sm pull-right" ng-click="isHelpCollapse = !isHelpCollapse"><i class="fa fa-question fa-fw"></i></button>
+              <div uib-collapse="isHelpCollapse" class="pull-right" style="margin-bottom:10px;"> 
+                <p style="margin-bottom : 3px;"><i class="fa fa-check"></i> Reserved variables</p>
+                <table style="margin-left : 20px;">
+                  <tr><th>%START_DATE</th><td>Start date</td></tr>
+                  <tr><th>%END_DATE</th><td>End date</td></tr>
+                  <tr><th>%PREV</th><td>Days go back to track the user</td></tr>
+                  <tr><th>%USER_INPUT_DATE</th><td>User's input for date</td></tr>
+                  <tr><th>%USER_INPUT_NUMBER</th><td>User's input for number</td></tr>
+                  <tr><th></th><td></td></tr>
+                  <tr><th><i class="fa fa-exclamation-triangle"></i>Note for %USER_INPUT_ variable</th><td>1. Put space after this variable. <br>2. You cannot have multiple values for this variable. If you put this variable name more than once, all variables will refer to the same value.</td></tr>
+                </table>
+                <p style="margin-bottom:3px; margin-top:6px;"><i class="fa fa-check"></i> What is essParaName?</p>
+                <table style="margin-left : 20px;">
+                  <tr><th>cvcond</th><td>"CV" options</td></tr>
+                  <tr><th>usrseg</th><td>"User Segment" options</td></tr>
+                  <tr><th>pathtpdef</th><td>Path's "Touch Point" options</td></tr>
+                </table>
+              </div>
+            </div>
+            <button
+             type="button"
+             class="btn btn-default btn-sm"
+             ng-click="vm.modal('add', row)"
+             ng-disabled="isNowAdding"
+             aria-haspopup="true"
+             aria-expanded="false"><span class="fa fa-plus fa-fw"></span>
+            </button>
+            <div ng-show="vm.selectedItem.label === 'Parts'" style="margin: 15px 0;">
+              <input type="search" id="optionssearchkeyword" class="form-control helper-keyword-search" 
+               style="width:98%;margin-left:3px;"
+               placeholder="search for.." 
+               ng-model="optionssearchkeyword"/>
+            </div>
+            <table class="table table-striped table-fixed" ng-show="vm.tbody.length>0" style="margin-bottom:20px;">
+              <thead>
+                <tr>
+                  <th ng-repeat="th in vm.thead" ng-show="th.isShow" ng-style="{'width': (th.label==='id') ? '50px' : 'auto'}" style="text-align:left;">{{th.label}}</th>
+                  <th style="width:100px;">edit/delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="row in vm.tbody | filter:searchFilter">
+                  <td ng-repeat="td in row.colms"  ng-show="td.isShow">
+                    <div ng-if="td.type !== 'condselection'">
+                      <span ng-if="['condValue','memo'].indexOf(td.label) === -1">{{td.value}}</span>
+                      <span ng-if="['condValue','memo'].indexOf(td.label) !== -1">{{td.value | limitTo : 20}}{{td.value.length > 20 ? '&hellip;' : ''}}</span>
+                    </div>
+                    <div ng-if="td.type === 'condselection'">
+                      <p ng-repeat="parts in td.value">{{parts.condName}}
+                        <span ng-if="parts.userinputs.length > 0">[ </span>
+                        <span ng-repeat="uinput in parts.userinputs">
+                          <span ng-if="$index!==0">, </span>
+                          {{uinput.value}}
+                        </span>
+                        <span ng-if="parts.userinputs.length > 0"> ]</span>
+                      </p>
+                    </div>
+                  </td>
+                  <td class="col-fixed">
+                    <button
+                     type="button"
+                     class="btn btn-default btn-sm dropdown-toggle"
+                     ng-click="vm.modal('edit', row)">
+                      <span class="fa fa-pencil"></span>
+                    </button>
+                    <button
+                     type="button"
+                     class="btn btn-default btn-sm dropdown-toggle"
+                     ng-click="vm.remove(row)">
+                      <span class="fa fa-trash-o"></span>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,74 @@
+body {
+  background-color: $white2;
+  font-family: $font-family-serif, $font-family-japanese;
+  font-size: $base-font-size;
+  font-weight: 400;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: none;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+a, button {
+  @include transition(all $transition-speed);
+  &:hover {
+    text-decoration: none;
+  }
+  &:active, &:focus {
+    outline: none !important;
+  }
+  &[class^="icon-"], &[class*=" icon-"] {
+    &:before {
+      @include transition(all $transition-speed);
+    }
+  }
+}
+
+#app-wrapper {
+  &.opened {
+    overflow-x: hidden;
+  }
+}
+
+.pre-fullscreen {
+  position: absolute !important;
+  z-index: 1000 !important;
+  &.fixed {
+    position: fixed !important;
+  }
+}
+
+.no-border-radius {
+  @include border-radius(0 !important);
+}
+
+.inline {
+  @include inline-block;
+}
+
+.main-widgets {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+    >[class^="col-"], >[class*=" col-"] {
+      padding-left: 0;
+      padding-right: 20px;
+    }
+    >[class^="col-sm-"], >[class*=" col-sm-"] {
+      max-width: 1000px;
+    }
+    >[class^="col-lg-"], >[class*=" col-lg-"] {
+      max-width: none;
+    }
+
+  }
+}
