@@ -19,7 +19,7 @@ General Idea of Applicatoin
 CJPath application works with "essentia" that in-memory database running on server. To communicate with essentia, we use php.
 
 Directory|Language| What it does
--------- | ---
+-------- | --- | ---
 ess|essentia|Core engine of this application. It loads customer journey data into in-memory database and calculate/query based on the request from php.
 api|php|It translates requests from javascript into essentia commands, run it, format it, and pass it to javascript back. It's also responsible for managing status of users.
 api|mysql|It stores filtering condition, help contents, touchpoint symbols.
@@ -29,24 +29,6 @@ app|javascript|dist of src/app.
  - If you want to add very new analysis, then you need to modify ess/, api/, src/app.
  - If you want to change visualization from data format, you need to modify api/ and src/app.
  - If you want to just change visualization based on the current data api, you only need to change src/app.
-
-```flow
-st=>start: Start (page loading)
-e=>end: GUI Visualization
-op1=>operation: src/app/index.html|past
-sub1=>subroutine: My Subroutine|invalid
-cond=>condition: Is working 
-directory occupied?|approved:>http://www.google.com
-c2=>condition: Load Data & Query|rejected
-io=>inputoutput: response|future
-
-st->op1(right)->cond
-cond(yes, right)->c2
-cond(no)->sub1(left)
-c2(yes)->io->e
-
-```
-
 
 
 Installation
