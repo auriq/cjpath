@@ -12,8 +12,8 @@ ess/*/cache/*/event-*.gz
 ess/*/cache/*/rank-*.gz
 ess/*/.local
 ess/.local
-ess/*/products.tsv
-ess/*/*.csv
+#ess/*/products.tsv
+#ess/*/*.csv
 ess/*/test.sh
 ess/*/t.sh
 
