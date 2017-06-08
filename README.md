@@ -87,15 +87,6 @@ Since it requires "essentia", you need to start from either of
 
   1. Run `sudo yum install -y bc` to install `bc` command.
 
-  1. Load `CVPathSettings` database into mysql.
-
-```
-#!bash
-
-
-mysql -u root -p$PASSWD < api/mysql-CVPathSettings-default.sql
-
-
-
-
-```
+  1. Load `CVPathSettings` database into mysql as `mysql -u root -p$PASSWD < api/mysql-CVPathSettings-default.sql`
+  
+  
