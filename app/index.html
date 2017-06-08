@@ -23,7 +23,7 @@
   var apihost = 'http://'+location.hostname+apiport+'/cjpath/api';</script> <body class="{{bodyClass}}" flow-prevent-drop flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''"> <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
   your browser</a> to improve your experience.</p>
-<![endif]--> <!-- Add your site or application content here --> <div class="container-fluid" id="app-wrapper" ng-controller="MainCtrl as main" ng-class="{ false: 'collapsed', true: 'opened' }[isSidebarOpened]"> <div sidebar ng-show="!main.islogout"></div> <div ng-view ng-show="!main.islogout"></div> <!-- AQ Log Tag --> <div ng-include src="'views/partials/loggedout.html'" ng-show="main.islogout"></div> <div ng-include src="'views/partials/aqlog.html'"></div> </div> <!--[if lt IE 9]>
+<![endif]--> <!-- Add your site or application content here --> <div class="container-fluid" id="app-wrapper" ng-controller="MainCtrl as main" ng-class="{ false: 'collapsed', true: 'opened' }[isSidebarOpened]"> <div sidebar ng-show="!main.islogout"></div> <div ng-view ng-show="!main.islogout"></div> <!-- AQ Log Tag --> <div ng-include src="'views/partials/loggedout.html'" ng-show="main.islogout"></div> </div> <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]--> <script src="scripts/vendor.ba0ea0a9.js"></script> <script src="scripts/scripts.880e0f67.js"></script> </body> </html>
