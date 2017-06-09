@@ -12,7 +12,7 @@ CJPath needs a dedicated environment since it processes data with in-memory data
 
 - AWS AMI Image : 
 
-    - AMI name of latest version : "CJPath GUI 05.31.2017"
+    - AMI name of latest version : "CJPath GUI beta"
 
     - Steps to start : 
 
@@ -70,7 +70,7 @@ Since it requires "essentia", you need to start from either of
 
 #### Start With AWS AMI Version ####
 
-  1. Launch instance from demo AMI image (CJPath GUI 05.31.2017) 
+  1. Launch instance from demo AMI image (CJPath GUI beta) 
 
   1. Enter the already running container as `docker exec -ti cjpath /bin/bash`
 
