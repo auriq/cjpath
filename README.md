@@ -12,7 +12,7 @@ CJPath needs a dedicated environment since it processes data with in-memory data
 
 - AWS AMI Image : 
 
-    - AMI name of latest version : "CJPath GUI beta"
+    - AMI name of latest version : "CJPath GUI beta 2"
 
     - Steps to start : 
 
